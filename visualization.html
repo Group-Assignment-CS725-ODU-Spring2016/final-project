@@ -42,19 +42,17 @@
 			 <p><a class="btn btn-primary" data-toggle="collapse" data-target="#div_job_type" role="button">View details &raquo;</a></p>
 	 	    <div class="collapse" id="div_job_type" >
 		      <p>In this task we analyze the data by job type of workers in the program  </p>
-			  <!-- first overview -->
-			
-			<div class="col-lg-8">
-	 		<div id="overviewjobid"></div>
-	 		<div id="btns">
-	 			Sort by:
-	 			<a class="btn btn-primary" onclick="redraw(1)">Job Count</a>
-	 			<a class="btn btn-primary" onclick="redraw(0)">Job Id</a>
-	 		</div>
-			</div>
-			
-			<div class="col-lg-4" id="hover_job_type"></div>
-			  
+			<!-- first overview -->
+				<div class="col-lg-8">
+					<div id="overviewjobid"></div>
+					<div id="btns">
+						Sort by:
+						<a class="btn btn-primary" onclick="redraw(1)">Job Count</a>
+						<a class="btn btn-primary" onclick="redraw(0)">Job Id</a>
+					</div>
+				</div>
+				<div class="col-lg-4" id="hover_job_type"></div>
+			<!-- end of first overview -->
 	        </div>
 		</div>
 		<!-- end of first task -->
@@ -67,7 +65,23 @@
 			<!-- Chart 4: detail hearing level of each worker -->
 	 		<div class="collapse" id="div_worker_detail">
           	  <p>In this task we analyze the data by workers during the time he served </p>
-      		
+      		<!-- second overview -->
+				<div class="col-lg-8">
+					<div id="dropdown_birthyear">
+						 
+					</div>
+					<div id="overviewworker"></div>
+					<div id="btns">
+						Sort by:
+						<a class="btn btn-primary" onclick="redrawworker(1)">Hearing</a>
+						<a class="btn btn-primary" onclick="redrawworker(0)">WorkerID</a>
+					</div>
+				</div>
+				<div class="col-lg-4" id="hover_worker"></div>
+			<!-- end of first overview -->
+			
+			
+			
 			    <div id="chart_worker_detail"></div>
 				<div id="slider_worker_detail"></div>
 			</div> <!-- end chart 4 -->
@@ -99,11 +113,17 @@
 	<script src="js/overview/barChart.js"></script>
 	<script src="js/overview/startEndSlider.js"></script>
 	<script src="js/overview/OverviewJobID.js"></script>
-	 
+	
+
+	<!-- second overview script -->
+<script src="js/secondoverview/barChartworker.js"></script>
+		<script src="js/secondoverview/startEndSliderworker.js"></script>
+<script src="js/secondoverview/Overviewworker.js"></script>
+	
 	<!-- chart 4 scripts - worker detail -->
     <script type="text/javascript" src="http://sujeetsr.github.io/d3.slider/javascripts/d3.slider.js"></script>
 	 <script type="text/javascript" src="js/individual/worker_detail_hearing.js"></script>
-	 
+	
 	 
 	
   </body>
