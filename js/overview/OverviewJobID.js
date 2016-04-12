@@ -55,7 +55,14 @@ redraw = function(sortCol) {
 
 
 d3.csv('js/overview/jobcountdetails.csv', function(data) {
-	stockData = _.map(data, function(d) { return [d.JobCodeNumber, d.JobCount/1e6, d.MinimumAge, d.MaximumAge, d.Female, d.Male] });
+	stockData = _.map(data, function(d) {
+	
+	if (d.JobCodeNumber=='852')
+	{
+		console.log("i am here 825",d.JobCount/1e6);
+	}
+	
+	return [d.JobCodeNumber, d.JobCount/1e6, d.MinimumAge, d.MaximumAge, d.Female, d.Male] });
 	yMax = d3.max(stockData, function(d) {return d[1]}); 
 	redraw(1);
 });

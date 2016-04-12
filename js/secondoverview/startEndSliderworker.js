@@ -156,19 +156,7 @@ var d3 = (function (d3, _) {
 				var svgEnter = svg.enter().append("svg");
 				var gEnter = svgEnter.attr("class",svgClass).append("g");
 
-				// function setCursor(value) {
-				// 	if (!value) {
-				// 		elt.style("cursor","auto");
-				// 		elt.select(".slider-between").style("cursor", "grab");
-				// 		elt.select(".slider-start").style("cursor", "ew-resize");
-				// 		elt.select(".slider-end").style("cursor", "ew-resize");
-				// 	} else {
-				// 		elt.style("cursor",value);
-				// 		elt.select(".slider-between").style("cursor", value);
-				// 		elt.select(".slider-start").style("cursor", value);
-				// 		elt.select(".slider-end").style("cursor", value);
-				// 	}
-				// }
+			
 
 				// A function which returns a drag behaviour which calls ondrag
 				function drag(doOnDrag, cursorVal) {
