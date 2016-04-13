@@ -3,68 +3,8 @@
 <head>
   <title>Navy</title>
   
-  <style>
-	.slice text {
-            font-size: 16pt;
-            font-family: Arial;
-        }   
-	
-	body {
-		font-family: sans-serif;
-		margin: 20px;
-	}
-	#container {
-		width: 1620px;
-		height: 500px;
-		border: 2px solid gray;
-		padding-bottom: 20px;
-		position: relative;
-	}
-	#chart {
-		height: 460px;
-		padding-bottom: 30px;
-	}
-	.axis text {
-		fill: #888;
-	}
-	.x.axis text {
-		font-size: 88%;
-	}
-	.btn { 
-		font-family: sans-serif;
-		margin: 33px 0 0 2px;
-		padding: 9px 12px;
-		border: 1px solid gray;
-		text-decoration: none;
-		color: black;
-		background: #CCC;
-	}
-	#btns {
-		float: right;
-		margin-right: 20px;
-	}
-	a.btn:hover { 
-		text-decoration: none;
-		color: black;
-		background: #BBB;
-	}
  
-	}
- 
-	p {
-		color: #777;
-	}
-	
-	.legend rect {
-			fill:white;
-			stroke:black;
-			opacity:0.8; 
-	}
-	
-	.byline {
-		margin:-10px 0 30px 0;
-	}
-	</style>
+
   
     <link href="css/bootstrap.css" rel="stylesheet">
     <!-- Custom styles for this template -->
@@ -101,24 +41,51 @@
         </nav>
       </div>
 	</div>
-	 
+
 	<div class="container-fluid">
-	  	<div class="row-fluid">
-			 <div class="col-lg-8" ></div>
-			 <div class="col-lg-4" id="hover">aaa</div>
-			
-			<div class="col-lg-6" id="chart"></div>
-			<div class="col-lg-4" id="pie"></div>
-			
-					
-			<div style="clear:both"></div>
+  		<div class="row">
+        	<div class="col-lg-2">
+            <br><br><br>
+        	</div>
+        	<div class="col-lg-10">
+        		<h2>Overview Job Type</h2>
+            	<p>This overview chart allows users to explore data of a particular job type.</p>
+        	</div>
+        </div>
+
+       	<div class="row">
+       		<div class="col-lg-1"></div>
+
+         	<div class="col-lg-8" id="chart">
+            	
+          
+        	</div>
+
+        	<div class="col-lg-3">
+            	<h2>Summary Info</h2>
+            	<p>Gender of this job id will be shown as below</p>
+          </div>
+
+        <div class="col-lg-3" id="pie">
+           
+          
+        </div>
+
+		<div class="col-lg-3" id="hover">
+            <h2>Bootstrap</h2>
+          
+        </div>
+
+    </div>
+	</div>
+	 
 			<div id="btns">
 				Sort by:
 				<a href="#" class="btn" onclick="redraw(1)">Job Count</a>
 				<a href="#" class="btn" onclick="redraw(0)">Job Id</a>
 			</div>
-		</div>
-	</div>	
+	
+
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.13/d3.min.js"></script>
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
 		<script src="js/firstoverview/barChart.js"></script>
