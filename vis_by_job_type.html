@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Navy</title>
+  
+  <style>
+	.slice text {
+            font-size: 16pt;
+            font-family: Arial;
+        }   
+	
+	body {
+		font-family: sans-serif;
+		margin: 20px;
+	}
+	#container {
+		width: 1620px;
+		height: 500px;
+		border: 2px solid gray;
+		padding-bottom: 20px;
+		position: relative;
+	}
+	#chart {
+		height: 460px;
+		padding-bottom: 30px;
+	}
+	.axis text {
+		fill: #888;
+	}
+	.x.axis text {
+		font-size: 88%;
+	}
+	.btn { 
+		font-family: sans-serif;
+		margin: 33px 0 0 2px;
+		padding: 9px 12px;
+		border: 1px solid gray;
+		text-decoration: none;
+		color: black;
+		background: #CCC;
+	}
+	#btns {
+		float: right;
+		margin-right: 20px;
+	}
+	a.btn:hover { 
+		text-decoration: none;
+		color: black;
+		background: #BBB;
+	}
+ 
+	}
+ 
+	p {
+		color: #777;
+	}
+	
+	.legend rect {
+			fill:white;
+			stroke:black;
+			opacity:0.8; 
+	}
+	
+	.byline {
+		margin:-10px 0 30px 0;
+	}
+	</style>
+  
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="css/justified-nav.css" rel="stylesheet">
+  	
+  	
+	
+</head>
+  <body>
+
+    <div class="container">
+
+      <!-- The justified navigation menu is meant for single line per list item.
+           Multiple lines will require custom code not provided by Bootstrap. -->
+      <div class="masthead">
+        <h1 class="text-muted">Navy Hearing Conservation</h1>
+        <nav>
+			<ul class="nav nav-justified">
+				<li ><a href="index.html">Home</a></li>
+				 
+					<li  class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Visualizations <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="vis_by_job_type.html">By Job Type</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="vis_by_worker.html">By Worker</a></li>
+						</ul>
+		  
+					</li>
+				 
+			<li><a href="resource.html">Resource</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+	</div>
+	 
+	<div class="container-fluid">
+	  	<div class="row-fluid">
+			 <div class="col-lg-8" ></div>
+			 <div class="col-lg-4" id="hover">aaa</div>
+			
+			<div class="col-lg-6" id="chart"></div>
+			<div class="col-lg-4" id="pie"></div>
+			
+			<!--<div style="margin-left: 100px; width: 1200px; float: left; background-color: White;"> Left </div>
+			<div style="margin-left: 420px;background-color: Silver;"> Right </div> -->
+			
+			<div style="clear:both"></div>
+			<div id="btns">
+				Sort by:
+				<a href="#" class="btn" onclick="redraw(1)">Job Count</a>
+				<a href="#" class="btn" onclick="redraw(0)">Job Id</a>
+			</div>
+		</div>
+	</div>	
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.13/d3.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
+		<script src="js/firstoverview/barChart.js"></script>
+		<script src="js/firstoverview/clickPanel.js"></script>
+		<script src="js/firstoverview/startEndSlider.js"></script>
+		<script src="js/firstoverview/d3.legend.js"></script>
+		<script src="js/firstoverview/script.js"></script>
+	
+  </body>
+</html>

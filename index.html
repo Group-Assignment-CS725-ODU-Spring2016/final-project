@@ -5,29 +5,35 @@
   <title>Navy</title>
   
   <link href="css/bootstrap.css" rel="stylesheet">
-  <!-- Custom styles for this template -->
-  <link href="css/justified-nav.css" rel="stylesheet">
-
-  <link href="css/custom.css" rel="stylesheet">
-  
-  <script src="js/bootstrap.js"></script>
-  <script src="js/script.js"></script>
+   <!-- Custom styles for this template -->
+   <link href="css/justified-nav.css" rel="stylesheet">
+ 
 
 </head>
 
 <body>
 
-<div class="container-fluid">
+<div class="container">
 
       <!-- The justified navigation menu is meant for single line per list item.
            Multiple lines will require custom code not provided by Bootstrap. -->
-       <div class="masthead">
+         <div class="masthead">
         <h1 class="text-muted">Navy Hearing Conservation</h1>
         <nav>
-          <ul class="nav nav-justified">
-            <li class="active"><a href="index.html">Home</a></li>
-            <li ><a href="visualization.html">Visualizations</a></li>
-            <li><a href="resource.html">Resource</a></li>
+			<ul class="nav nav-justified">
+				<li ><a href="index.html">Home</a></li>
+				 
+					<li  class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Visualizations <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="vis_by_job_type.html">By Job Type</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="vis_by_worker.html">By Worker</a></li>
+						</ul>
+		  
+					</li>
+				 
+			<li><a href="resource.html">Resource</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
         </nav>
@@ -44,11 +50,8 @@
 </div> <!-- div container -->
 
 </div>
-
-<div id="chart_overview_by_job_type"
-
-
-
-
+ <script src="js/jquery-2.2.3.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>

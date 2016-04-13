@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+	<style>
+	.slice text {
+            font-size: 16pt;
+            font-family: Arial;
+        }   
+	
+	body {
+		font-family: sans-serif;
+		margin: 20px;
+	}
+	#container {
+		width: 1620px;
+		height: 500px;
+		border: 2px solid gray;
+		padding-bottom: 20px;
+		position: relative;
+	}
+	#chart {
+		height: 460px;
+		padding-bottom: 30px;
+	}
+	.axis text {
+		fill: #888;
+	}
+	.x.axis text {
+		font-size: 88%;
+	}
+	.btn { 
+		font-family: sans-serif;
+		margin: 33px 0 0 2px;
+		padding: 9px 12px;
+		border: 1px solid gray;
+		text-decoration: none;
+		color: black;
+		background: #CCC;
+	}
+	#btns {
+		float: right;
+		margin-right: 20px;
+	}
+	a.btn:hover { 
+		text-decoration: none;
+		color: black;
+		background: #BBB;
+	}
+	#hover {
+		position: absolute;
+		top: 15px;
+		right: 20px;
+		width: 290px;
+	}
+	#hover h2 { 
+		width: 90px; 
+		float: left; 
+		text-align: right;
+	}
+	#hover .key-value {
+		margin-top: 12px;
+		float:left;
+		width: 100px;
+		text-align: center;
+	}
+	#hover .value {
+		color: #EE8C10; 
+		font-size:125%;
+	}
+	#hover .key {
+		font-size: 90%;
+		color: #777;
+	}
+	
+	.left{
+	float: left; width: 200px;
+	}
+	.right{
+	position: absolute; float: left; width: 200px; right: 0px; padding: 90px;
+	}
+	
+	p {
+		color: #777;
+	}
+	
+	.legend rect {
+			fill:white;
+			stroke:black;
+			opacity:0.8; 
+	}
+	
+	.byline {
+		margin:-10px 0 30px 0;
+	}
+	</style>
+	<body>
+		<h1>Navy Hearing Conservation Program</h1>
+		<p class="byline">Job Id and Job Count Overview</p>
+		
+		<div id="container">
+			<div id="hover"></div>
+			<div class="left" id="chart"></div>
+			<div class="right" id="pie"></div>
+			
+			<!--<div style="margin-left: 100px; width: 1200px; float: left; background-color: White;"> Left </div>
+			<div style="margin-left: 420px;background-color: Silver;"> Right </div> -->
+			
+			<div style="clear:both"></div>
+			<div id="btns">
+				Sort by:
+				<a href="#" class="btn" onclick="redraw(1)">Job Count</a>
+				<a href="#" class="btn" onclick="redraw(0)">Job Id</a>
+			</div>
+		</div>
+		
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.13/d3.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
+		<script src="js/firstoverview/barChart.js"></script>
+		<script src="js/firstoverview/clickPanel.js"></script>
+		<script src="js/firstoverview/startEndSlider.js"></script>
+		<script src="js/firstoverview/d3.legend.js"></script>
+		<script src="js/firstoverview/script.js"></script>
+	
+	</body>
+</html>
+
+
+
