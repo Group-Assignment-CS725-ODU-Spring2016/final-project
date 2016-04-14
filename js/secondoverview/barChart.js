@@ -50,6 +50,7 @@ var d3 = (function (d3, _) {
 			fill = function(d) { return d[1]>=0 ? "#3399ff" : "#BB6666" },
 			stroke = function(d) { return d[1]>=0 ? "gray" : "#BB6666" },
 			mouseOver = function() {}, // function(elt, d) {}
+			click = function() {}, // function(elt, d) {}
 			mouseOut = function() {}, // function(elt, d) {}
 			rangeWidget = null,
 			xDomain = null; // set this to positions [start, end] into the data, to restrict the x domain
@@ -128,6 +129,7 @@ var d3 = (function (d3, _) {
 				// UPDATE
 				bars.on("mouseover", function(d) { mouseOver(this, d) }) // put these on the update in case they have changed
 					.on("mouseout", function(d) { mouseOut(this, d) })
+					.on("click", function(d) { click(this, d) })
 					.transition()
 						.duration(duration)
 						.attr("x", xX )
@@ -136,6 +138,8 @@ var d3 = (function (d3, _) {
 						.attr("width", xScale.rangeBand())
 						.attr("fill", fill)
 						.attr("stroke", stroke);
+						
+					//	bars.on("click", function(d,i) { alert("Hello world"); });
 
 				// EXIT
 				bars.exit().transition()
@@ -181,6 +185,7 @@ var d3 = (function (d3, _) {
 		 				.selectAll("text")
 							.on("mouseover", function(x) { mouseOver(this, getDataLine(x)) })
 							.on("mouseout", function(x) { mouseOut(this, getDataLine(x)) })
+							.on("click",function(x) { click(this,getDataLine(x)) })
 							.call(xAxisText);
 					hadXAxis = true;
 				} else if (hadXAxis) {
@@ -340,6 +345,12 @@ var d3 = (function (d3, _) {
 		chart.mouseOver = function(_) {
 			if (!arguments.length) return mouseOver;
 			mouseOver = _;
+			return chart;
+		};
+		
+		chart.click = function(_) {
+			if(!arguments.length) return click;
+			click = _;
 			return chart;
 		};
 		
