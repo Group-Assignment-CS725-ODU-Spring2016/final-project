@@ -48,7 +48,6 @@ redrawworker = function(sortCol) {
 
 
 var dispatch = d3.dispatch("load", "statechange");
- 
 
 d3.csv("js/secondoverview/birthyear.csv", function(error, birthyears) {
   if (error) throw error;
@@ -57,7 +56,6 @@ d3.csv("js/secondoverview/birthyear.csv", function(error, birthyears) {
   dispatch.load(selectedyear);
   dispatch.statechange(selectedyear.get("1924"));
 });
-
 
 
 // A drop-down menu for selecting a birthyear; uses the "menu" namespace.
