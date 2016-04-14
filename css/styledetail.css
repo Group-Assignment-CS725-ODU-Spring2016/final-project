@@ -2,9 +2,7 @@ body {
     font: 12px verdana, helvetica, arial, sans-serif;
   }
 
-  .chart {
-    display: inline-block;
-  }
+ 
   #info {
     display: inline-block;
     vertical-align: top;

@@ -1,6 +1,6 @@
 
 			var elt = d3.select("#chart");
-			var width = 1320, 
+			var width = 1200, 
 				height = 400;
 			var stockData = null,
 				yMax;
@@ -10,9 +10,7 @@
 				<!--html += '<div class="key-value"><div class="value">'+d[2]+'%</div><div class="key">Weight</div></div>'; -->
 				html += '<div class="key-value"><div class="key"><b>Job Count</b></div><div class="value">'+d3.format(".2")(+d[1]*1000000)+'</div></div>';
 				html += '<div class="key-value"><div class="key"><b>Age range</b></div><div class="value">'+d[2]+" - "+d[3]+'</div></div>';
-			//	html += '<div class="key-value"><div class="key"><b>Male&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Female</b></div><div class="value">'+d[5]+"&nbsp;"+d[4]+'</div></div>';
-			//	html += '<div class="key-value"><div class="key"><b>Total</b></div><div class="value">'+d[6]+'</div></div>';
-				
+		
 				hoverDiv.html(html);
 				hoverDiv.style("opacity",1);
 				var male = d[5];

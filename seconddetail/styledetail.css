@@ -1,0 +1,91 @@
+body {
+    font: 12px verdana, helvetica, arial, sans-serif;
+  }
+
+ 
+  #info {
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 50px;
+    margin-left: 10px;
+  }
+
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: #000;
+  }
+
+  .tick {
+    font: 10px sans-serif;
+  }
+
+  path.left {
+    fill: none;
+    stroke: black;
+    stroke-width: 1.5px;
+  }
+
+  path.right {
+    fill: none;
+    stroke: blue;
+    stroke-width: 1.5px;
+  }
+
+  path.dotted {
+    stroke-dasharray: 5,2.5;
+  }
+  
+  path.path-inset {
+    fill: none;
+    stroke: black;
+    stroke-width: 1.5px;
+  }
+
+  circle.left {
+    fill: black;
+  }
+
+  circle.right {
+    fill: blue;
+  }
+
+  .label {
+    font-family: 'Helvetica Neue', Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    text-anchor: middle;
+  }
+
+  h2 {
+    width: 850px;
+    text-align: center;
+  }
+
+  #top-jobs {
+    font-size: 10px;
+    margin-top: 20px;
+  }
+
+  #info-bottom {
+    font-size: 10px;
+    margin-left: 60px;
+  }
+
+  #top-levels, #top-hearings {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  #top-levels table, #top-jobs table, #top-hearings table {
+    border: 1px solid silver;
+  }
+
+  #top-levels table {
+    display: inline-table;
+    margin-right: 10px;
+  }
+
+  #top-levels table td, #top-jobs table td {
+    padding: 1px 6px 1px 6px;
+  }

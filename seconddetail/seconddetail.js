@@ -1,26 +1,9 @@
-<html>
-  <head>
-    <!-- Slider -->
-    <link rel="stylesheet" href="http://sujeetsr.github.io/d3.slider/stylesheets/d3.slider.css" />
-    <!-- Local css -->
-    <link rel="stylesheet" href="style.css" />
-    
-    <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
-    <!--<script type="text/javascript" src="http://www.d3plus.org/js/d3plus.js"></script>-->
-    <script type="text/javascript" src="d3.slider.js"></script>
-  </head>
-  <body>
-    <div class="chart" id="chart"></div> 
-	<!-- <div class="chart" id="info"> See how the total hearing level changes </div> -->
-	<div class="chart" id="inset" style="label: See how the total hearing level changes"></div>
-    <div id="slider" style="margin-left: 35px; width: 820px"></div>
-    
-    <script>
+
       var margin = {top: 50, left: 60, right: 20, bottom: 20},
           width = 800 - margin.left - margin.right,
           height = 500 - margin.top - margin.bottom;
 
-      var svg = d3.select("#chart").append("svg")
+      var svg = d3.select("#chartseconddetail").append("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
       .append("g")
@@ -359,6 +342,4 @@
         createGraph(data[0])
         createInsetTotal(data, 0)
       })
-    </script>
-  </body>
-</html>
+ 
