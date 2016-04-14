@@ -48,13 +48,6 @@ var margin = {top: 10, right: 10, bottom: 100, left: 40},
 
 
 
-// var x = d3.scale.ordinal()
-//     .rangeRoundBands([0, width], .1),
-//     x2 = d3.scale.linear().range([0, width]),
-//     y = d3.scale.linear().range([height, 0]),
-//     y2 = d3.scale.linear().range([height2, 0]);
-
-
 var x = d3.scale.linear().range([0, width]);
 
 //     // var x = d3.scale.ordinal()
@@ -74,18 +67,6 @@ var xAxis = d3.svg.axis().scale(x)
 var brush = d3.svg.brush()
     .x(x2)
     .on("brush", brushed);
-
-var area = d3.svg.area()
-    .interpolate("monotone")
-    .x(function(d) { return x(d.date); })
-    .y0(height)
-    .y1(function(d) { return y(d.price); });
-
-/*var area2 = d3.svg.area()
-    .interpolate("monotone")
-    .x(function(d) { return x2(d.date); })
-    .y0(height2)
-    .y1(function(d) { return y2(d.price); });*/
 
 var svg = d3.select("body").append("svg")
     .attr("width", width + margin.left + margin.right)
@@ -107,22 +88,21 @@ var context = svg.append("g")
     .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")");
 
 
-var focusxaxis = focus.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(200," + height + ")");
+//var focusxaxis = focus.append("g")
+//      .attr("class", "x axis")
+//      .attr("transform", "translate(200," + height + ")");
       //.call(xAxis);
 
 //focusxaxis.attr("transform", "translate(" + (width/(x.domain()[1]-x.domain()[0]+1))/2 + "," + height + ")");
 
 
+var maxx, maxy;
 
 d3.csv("sp500.csv", function(error, data) {
     
 
-   var maxx = d3.max(data, function(d) { return +d.date; });
-  var maxy = d3.max(data, function(d) { return +d.price; });
-
-var barsize =25;
+   maxx = d3.max(data, function(d) { return +d.date; });
+   maxy = d3.max(data, function(d) { return +d.price; });
 
   x.domain([1,maxx+1]);
 
@@ -139,7 +119,7 @@ var barsize =25;
     .enter().append("rect")
       .attr("x", function(d) { return x(d.date); })
       .attr("y", function(d) { return height - y(d.price); })
-      .attr("width", barsize)
+      .attr("width", 25)
       //.attr("width", x.rangeBand())
       .attr("height", function(d) { return y(d.price); });
 
@@ -174,16 +154,15 @@ function brushed() {
   x.domain(brush.empty() ? x2.domain() : brush.extent());
   
   // focusGraph.attr("width",40);
-  console.log(x.domain()[1]-x.domain()[0]+1);
+  //console.log(x.domain()[1]-x.domain()[0]+1);
   // barsize = 10;
   // focusGraph.attr("width",barsize);
   
   focusGraph.attr("x", function(d, i) { return x(d.date); });
    focusGraph.attr("width", function(d, i) { return width/(x.domain()[1]-x.domain()[0]+1); });
   
- focusxaxis.attr("transform", "translate(" + (width/(x.domain()[1]-x.domain()[0]))/2 + "," + height + ")");
   
-  //focus.select(".x.axis").call(xAxis);
+  focus.select(".x.axis").call(xAxis);
 
 }
 

@@ -27,6 +27,9 @@
 
 </style>
 <body>
+
+  <button id="sort" onclick="sortBars()">Sort</button>
+    <button id="reset" onclick="reset()">Reset</button>
 <script src="//d3js.org/d3.v3.min.js"></script>
 <script>
 
@@ -66,21 +69,10 @@ d3.tsv("../data.tsv", type, function(error, data) {
       .attr("transform", "translate(0," + height + ")")
       .call(xAxis);
 
-  svg.append("g")
-      .attr("class", "y axis")
-      .call(yAxis)
-    .append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 6)
-      .attr("dy", ".71em")
-      .style("text-anchor", "end")
-      .text("Frequency");
-
-  svg.selectAll(".bar")
+  svg.selectAll("rect")
       .data(data)
     .enter().append("rect")
-      .attr("class", "bar")
-      .attr("x", function(d) { return x(d.letter); })
+          .attr("x", function(d) { return x(d.letter); })
       .attr("width", x.rangeBand())
       .attr("y", function(d) { return y(d.frequency); })
       .attr("height", function(d) { return height - y(d.frequency); });
@@ -90,5 +82,45 @@ function type(d) {
   d.frequency = +d.frequency;
   return d;
 }
+
+var sortOrder = false;
+var sortBars = function () {
+    sortOrder = !sortOrder;
+   
+   
+    sortItems = function (a, b) {
+	
+        if (sortOrder) {
+            return a.frequency - b.frequency;
+        }
+        return b.frequency - a.frequency;
+    };
+	
+	
+    svg.selectAll("rect")
+        .sort(sortItems)
+        .transition()
+        .delay(function (d, i) {
+        return i * 50;
+    })
+        .duration(1000)
+        .attr("x", function (d, i) {
+        return xScale(i);
+    });
+  
+};
+// Add the onclick callback to the button
+d3.select("#sort").on("click", sortBars);
+d3.select("#reset").on("click", reset);
+function reset() {
+	svg.selectAll("rect")
+		.sort(function(a, b){
+			return a.letter - b.letter;
+		})
+		.transition()
+        .attr("x", function (d, i) {
+        return xScale(i);
+		});
+};
 
 </script>
