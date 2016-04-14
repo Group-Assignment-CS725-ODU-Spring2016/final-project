@@ -1,118 +1,137 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <style>
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  position: relative;
+  width: 960px;
+}
+
+.axis text {
+  font: 10px sans-serif;
+}
+
 .axis path,
 .axis line {
-	fill: none;
-	stroke: black;
-	shape-rendering: crispEdges;
-}
-.axis text {
-	font-family: sans-serif;
-	font-size: 11px;
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
 }
 
-rect {
-	-moz-transition: all 0.3s;
-	-webkit-transition: all 0.3s;
-	-o-transition: all 0.3s;
-	transition: all 0.3s;
+.bar {
+  fill: steelblue;
+  fill-opacity: .9;
 }
-rect:hover{
-	fill: orange;
+
+.x.axis path {
+  display: none;
 }
+
+label {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
 </style>
-<body>
-    <button id="sort" onclick="sortBars()">Sort</button>
-    <button id="reset" onclick="reset()">Reset</button>
-
-<script src="d3.min.js"></script>
-
+<label><input type="checkbox"> Sort values</label>
+<script src="//d3js.org/d3.v3.min.js"></script>
 <script>
-var w = 600;
-var h = 250;
 
-var dataset = [ 
-	{ date: 0, price: 5 },
-	{ date: 1, price: 10 },
-	{ date: 2, price: 22 },
-	{ date: 3, price: 19 },
-	{ date: 4, price: 21 }
-];
+var margin = {top: 20, right: 20, bottom: 30, left: 40},
+    width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
 
-var xScale = d3.scale.ordinal()
-				.domain(d3.range(dataset.length))
-				.rangeRoundBands([0, w], 0.05); 
+var formatPercent = d3.format(".0%");
 
-var yScale = d3.scale.linear()
-				.domain([0, d3.max(dataset, function(d) {return d.price;})])
-				.range([0, h]);
+var x = d3.scale.ordinal()
+    .rangeRoundBands([0, width], .1, 1);
 
-var key = function(d) {
-	return d.date;
-};
+var y = d3.scale.linear()
+    .range([height, 0]);
 
-//Create SVG element
-var svg = d3.select("body")
-			.append("svg")
-			.attr("width", w)
-			.attr("height", h);
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
 
-//Create bars
-svg.selectAll("rect")
-   .data(dataset, key)
-   .enter()
-   .append("rect")
-   .attr("x", function(d, i) {
-		return xScale(i);
-   })
-   .attr("y", function(d) {
-		return h - yScale(d.price);
-   })
-   .attr("width", xScale.rangeBand())
-   .attr("height", function(d) {
-		return yScale(d.price);
-   })
-   .attr("fill", function(d) {
-		return "rgb(0, 0, " + (d.price * 10) + ")";
-   })
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left")
+    .tickFormat(formatPercent);
 
-	
-var sortOrder = false;
-var sortBars = function () {
-    sortOrder = !sortOrder;
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+d3.tsv("data1.tsv", function(error, data) {
+
+  data.forEach(function(d) {
+    d.frequency = +d.frequency;
+  });
+
+  x.domain(data.map(function(d) { return d.letter; }));
+  y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
+
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis);
+
+
+
+  svg.selectAll(".bar")
+      .data(data)
+    .enter().append("rect")
+      .attr("class", "bar")
+      .attr("x", function(d) { return x(d.letter); })
+      .attr("width", x.rangeBand())
+      .on('click', toggleColor)
+      .attr("y", function(d) { return y(d.frequency); })
+      .attr("height", function(d) { return height - y(d.frequency); });
+
+  d3.select("input").on("change", change);
+
+  var sortTimeout = setTimeout(function() {
+    d3.select("input").property("checked", true).each(change);
+  }, 2000);
+
+  function change() {
+    clearTimeout(sortTimeout);
+
+    // Copy-on-write since tweens are evaluated after a delay.
+    var x0 = x.domain(data.sort(this.checked
+        ? function(a, b) { return b.frequency - a.frequency; }
+        : function(a, b) { return d3.ascending(a.letter, b.letter); })
+        .map(function(d) { return d.letter; }))
+        .copy();
+
+    svg.selectAll(".bar")
+        .sort(function(a, b) { return x0(a.letter) - x0(b.letter); });
+
+    var transition = svg.transition().duration(750),
+        delay = function(d, i) { return i * 50; };
+
+    transition.selectAll(".bar")
+        .delay(delay)
+        .attr("x", function(d) { return x0(d.letter); });
+
+    transition.select(".x.axis")
+        .call(xAxis)
+      .selectAll("g")
+        .delay(delay);
+  }
+});
+
+var toggleColor = (function(){
    
-    sortItems = function (a, b) {
-        if (sortOrder) {
-            return a.price - b.price;
-        }
-        return b.price - a.price;
-    };
-    svg.selectAll("rect")
-        .sort(sortItems)
-        .transition()
-        .delay(function (d, i) {
-        return i * 50;
-    })
-        .duration(1000)
-        .attr("x", function (d, i) {
-        return xScale(i);
-    });
-
-  
-};
-// Add the onclick callback to the button
-d3.select("#sort").on("click", sortBars);
-d3.select("#reset").on("click", reset);
-function reset() {
-	svg.selectAll("rect")
-		.sort(function(a, b){
-			return a.date - b.date;
-		})
-		.transition()
-        .attr("x", function (d, i) {
-        return xScale(i);
-		});
-};
+    return function(){
+        
+        d3.selectAll("rect").style("fill", "orange");
+        d3.select(this).style("fill", "magenta");
+    }
+})();
 
 </script>
