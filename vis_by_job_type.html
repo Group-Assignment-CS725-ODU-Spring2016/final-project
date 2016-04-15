@@ -7,10 +7,7 @@
     <link href="css/bootstrap.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="css/justified-nav.css" rel="stylesheet">
-  	
-  	
-  	<link rel="stylesheet" href="http://sujeetsr.github.io/d3.slider/stylesheets/d3.slider.css" />
-    <link rel="stylesheet" href="css/styledetail.css" />
+  	<link rel="stylesheet" href="css/overview/overview.css" />
 	
 </head>
   <body>
@@ -40,10 +37,10 @@
           </ul>
         </nav>
       </div>
-	</div>
+	</div><!--  end of nav menu -->
 
 
-  <br><br><br><br><br><br>
+
 	<!-- First overview for job type -->
 
 	<div class="container-fluid">
@@ -51,32 +48,10 @@
        	<div class="row">
        		<div class="col-lg-1"></div>
 
-        
-         	<div class="col-lg-6" id="chart">
-         		<div class="col-lg-9" >
-
-         		</div>
-         		<div class="col-lg-3" >
-              <br><br><br>
-            	Sort by:
-					     <a href="#" class="btn btn-primary" onclick="redraw(1)">Job Count</a>
-					     <a href="#" class="btn btn-primary" onclick="redraw(0)">Job Id</a>
-         		</div>
+         	<div class="col-lg-6" id="overview_job_id">
+         		
         	</div>
 
-        	 <div class="col-lg-3" >
-        	 
-			 	<div class="col-lg-4"></div>
-			 	<div class="col-lg-8" id="pie">
-            	</div>
-        	</div>
-
-        
-			 <div class="col-lg-2" >
-			 
-			 	<div class="col-lg-12" id="hover">
-            	</div>
-        	</div>
     	</div>
 	</div> <!-- end first overview job type -->
 	
@@ -94,23 +69,30 @@
 
 	</div>
 
+	<div> You are selected:  </div>
+	<div id="info">  </div>
 
-		<script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.13/d3.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.13/d3.min.js"></script>		
+		<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+		
+
+
+	<!--
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
-		<script src="js/firstoverview/barChart.js"></script>
+	 	<script src="js/firstoverview/barChart.js"></script>
 		<script src="js/firstoverview/clickPanel.js"></script>
 		<script src="js/firstoverview/startEndSlider.js"></script>
 		<script src="js/firstoverview/d3.legend.js"></script>
-		<script src="js/firstoverview/script.js"></script>
+		<script src="js/firstoverview/script.js"></script> -->
+		<script src="js/overview/firstoverview.js"></script>
 		
 
-		<script type="text/javascript" src="js/seconddetail.js"></script>
-		<script type="text/javascript" src="js/d3.slider.js"></script>
+		<!-- <script type="text/javascript" src="js/seconddetail.js"></script>
+		<script type="text/javascript" src="js/d3.slider.js"></script> -->
 
  		<script src="js/jquery-2.2.3.min.js"></script>
     	<script src="js/bootstrap.js"></script>
     	
 
-	
   </body>
 </html>
