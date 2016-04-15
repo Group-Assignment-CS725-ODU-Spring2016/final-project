@@ -1,0 +1,50 @@
+<html>
+
+  
+
+ <body> 
+  <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+  
+  <script>
+  
+ //The data for our line
+ var lineData = [ { "x": 1,   "y": 5},  { "x": 20,  "y": 20},
+                  { "x": 40,  "y": 10}, { "x": 160,  "y": 40},
+                  { "x": 200,  "y": 5},  { "x": 500, "y": 260}];
+
+ //This is the accessor function we talked about above
+ var lineFunction = d3.svg.line()
+                          .x(function(d) { return d.x; })
+                          .y(function(d) { return d.y; })
+                         .interpolate("basis");
+
+//The SVG Container
+var svgContainer = d3.select("body").append("svg")
+                                    .attr("width", 400)
+                                    .attr("height", 400);
+
+//The line SVG Path we draw
+var lineGraph = svgContainer.append("path")
+                            .attr("d", lineFunction(lineData))
+                           .attr("stroke", "blue")
+                            .attr("stroke-width", 7)
+                            .attr("fill", "none")
+							.attr('opacity', 0.1)		
+									;
+ 
+
+var totalLength = lineGraph.node().getTotalLength();
+
+lineGraph
+					        .attr("stroke-dasharray", totalLength + " " + totalLength)
+					        .attr("stroke-dashoffset", totalLength)
+					        .transition()
+					          .duration(2000)
+					          .ease("linear")
+					          .attr("stroke-dashoffset", 0);
+					
+
+							  </script>
+ 
+							</body>
+							</html>

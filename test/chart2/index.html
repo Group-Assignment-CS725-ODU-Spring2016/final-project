@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Chart 2 with two sliders</title>
+  <link rel="stylesheet" href="d3.slider.css" />  
+  <link rel="stylesheet" href="style.css">
+<script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+
+  <style>
+
+    body {
+      font-family: Verdana,Arial,sans-serif;
+    }
+
+    h2 {
+      font-size: 1.2em;
+      margin: 20px 0 5px 0;
+    }
+
+    .wrapper {
+      width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .wrapper > div {
+      margin: 10px 0;
+    }
+	
+    #slider3 {
+      width: 700px;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+
+      <h2> Hearing Level by Job and Age</h2>
+      <div id="chart2"></div>
+      <div id="slider"></div>
+    
+	
+	  	  <script src="globalvariable.js"></script>
+  	<script type="text/javascript" src="define2.js"></script>
+  	<script type="text/javascript" src="chart2.js"></script>
+	  <script src="http://d3js.org/d3.v3.min.js"></script>
+	  <script src="d3.slider.js"></script>
+	
+
+
+  	<h2>Job ID Value: <span id="chart2_job_id">1</span></h2>
+	<div id="chart2_jobid_slider" class="slide3"></div>
+	
+    <h2>Age Range from <span id="chart2_age_min">20</span> to <span id="chart2_age_max">25</span></h2>
+    <div id="chart2_age_slider" class="slide3"></div>
+
+
+	<!-- <code>Type in your code here </code> -->
+  </div>
+
+  
+  <script>
+  
+  d3.select('#chart2_jobid_slider').call(d3.slider().axis(true).value(1).on("slide", function(evt, value) {
+    d3.select('#chart2_job_id').text(value);
+  }));
+  
+  
+
+    d3.select('#chart2_age_slider').call(d3.slider().axis(true).value( [ 20, 30 ] ).on("slide", function(evt, value) {
+      d3.select('#chart2_age_min').text(value[ 0 ]);
+      d3.select('#chart2_age_max').text(value[ 1 ]);
+    }));
+
+  
+
+  </script>
+ 
+</body>
+</html>
