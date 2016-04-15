@@ -1,14 +1,5 @@
-body {
-    font: 12px verdana, helvetica, arial, sans-serif;
-  }
 
- 
-  #info {
-    display: inline-block;
-    vertical-align: top;
-    margin-top: 50px;
-    margin-left: 10px;
-  }
+
 
   .axis path,
   .axis line {
@@ -16,9 +7,6 @@ body {
     stroke: #000;
   }
 
-  .tick {
-    font: 10px sans-serif;
-  }
 
   path.left {
     fill: none;
@@ -57,10 +45,6 @@ body {
     text-anchor: middle;
   }
 
-  h2 {
-    width: 850px;
-    text-align: center;
-  }
 
   #top-jobs {
     font-size: 10px;

@@ -7,7 +7,11 @@
     <link href="css/bootstrap.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="css/justified-nav.css" rel="stylesheet">
+
+
   	<link rel="stylesheet" href="css/overview/overview.css" />
+    <link rel="stylesheet" href="css/detail/styledetail.css" />
+    <link rel="stylesheet" href="http://sujeetsr.github.io/d3.slider/stylesheets/d3.slider.css" />
 	
 </head>
   <body>
@@ -56,6 +60,8 @@
 	</div> <!-- end first overview job type -->
 	
 
+	<!-- first detail for job type -->
+
 	<div class="row">
 		<div class="col-lg-1"></div>
 		<div class="col-lg-5">
@@ -67,29 +73,26 @@
     		<div  id="inset"></div>			
 		</div>
 
-	</div>
+	</div> <!-- first detail for job type -->
 
 	<div> You are selected:  </div>
 	<div id="info">  </div>
+
+
+		<!-- scripts for the first vis -->
 
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.13/d3.min.js"></script>		
 		<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
 		
 
-
-	<!--
-		<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
-	 	<script src="js/firstoverview/barChart.js"></script>
-		<script src="js/firstoverview/clickPanel.js"></script>
-		<script src="js/firstoverview/startEndSlider.js"></script>
-		<script src="js/firstoverview/d3.legend.js"></script>
-		<script src="js/firstoverview/script.js"></script> -->
+		<!-- overview -->
 		<script src="js/overview/firstoverview.js"></script>
 		
+		<!-- detail -->
+		<script type="text/javascript" src="js/detail/firstdetail.js"></script>
+		<script type="text/javascript" src="js/d3.slider.js"></script>
 
-		<!-- <script type="text/javascript" src="js/seconddetail.js"></script>
-		<script type="text/javascript" src="js/d3.slider.js"></script> -->
-
+		<!-- bootstrap -->
  		<script src="js/jquery-2.2.3.min.js"></script>
     	<script src="js/bootstrap.js"></script>
     	

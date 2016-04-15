@@ -1,47 +1,48 @@
 
+var selected_worker_id = '';
 
 var focusGraph;
 
-var margin = {top: 100, right: 10, bottom: 100, left: 40},
-    margin2 = {top: 430, right: 10, bottom: 40, left: 40},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom,
-    height2 = 500 - margin2.top - margin2.bottom;
+var ovmargin = {top: 100, right: 10, bottom: 100, left: 40},
+    ovmargin2 = {top: 430, right: 10, bottom: 40, left: 40},
+    ovwidth = 960 - ovmargin.left - ovmargin.right,
+    ovheight = 500 - ovmargin.top - ovmargin.bottom,
+    ovheight2 = 500 - ovmargin2.top - ovmargin2.bottom;
 
-var x = d3.scale.linear().range([0, width]);
+var ovx = d3.scale.linear().range([0, ovwidth]);
 
-var x2 = d3.scale.linear().range([0, width]);
+var ovx2 = d3.scale.linear().range([0, ovwidth]);
 
-var y = d3.scale.linear().range([height,0]);
-var y2 = d3.scale.linear().range([height2, 0]);
+var ovy = d3.scale.linear().range([ovheight,0]);
+var ovy2 = d3.scale.linear().range([ovheight2, 0]);
 
-var xAxis = d3.svg.axis().scale(x)
+var ovxAxis = d3.svg.axis().scale(ovx)
 	
 	.orient("bottom");
 
-var  xAxis2 = d3.svg.axis().scale(x2)
+var  ovxAxis2 = d3.svg.axis().scale(ovx2)
     .orient("bottom");
 	
 
-var yAxis = d3.svg.axis().scale(y).orient("left");
+var ovyAxis = d3.svg.axis().scale(ovy).orient("left");
 
 var brush = d3.svg.brush()
-    .x(x2)
+    .x(ovx2)
     .on("brush", brushed);	
 
-var svg = d3.select("#overview_job_id").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom);
+var svg = d3.select("#overview_worker_id").append("svg")
+    .attr("width", ovwidth + ovmargin.left + ovmargin.right)
+    .attr("height", ovheight + ovmargin.top + ovmargin.bottom);
 
 svg.append("defs").append("clipPath")
     .attr("id", "clip")
   .append("rect")
-    .attr("width", width)
-    .attr("height", height);
+    .attr("width", ovwidth)
+    .attr("height", ovheight);
 
 //define big chart (focus)
 var focus = svg.append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    .attr("transform", "translate(" + ovmargin.left + "," + ovmargin.top + ")");
 
 var barsGroup = focus.append("g")
     .attr('clip-path', 'url(#clip)');
@@ -49,14 +50,14 @@ var barsGroup = focus.append("g")
 
 //Define small slider (context)	
 var context = svg.append("g")
-    .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")");
+    .attr("transform", "translate(" + ovmargin2.left + "," + ovmargin2.top + ")");
 	
 
 var area2 = d3.svg.area()
     //.interpolate("monotone")
-    .x(function(d,i) { return x2(i); })
-    .y0(height2)
-    .y1(function(d) { return y2(d.totalhearing); });
+    .x(function(d,i) { return ovx2(i); })
+    .y0(ovheight2)
+    .y1(function(d) { return ovy2(d.totalhearing); });
 
 
 var currentSelected;
@@ -80,25 +81,25 @@ d3.json("http://www.cs.odu.edu/~hdo/InfoVis/navy/databybirthyear.php?birthyear=1
 
   
   
-  x.domain(d3.extent(data.map(function(d,i) { return i; })));
+  ovx.domain(d3.extent(data.map(function(d,i) { return i; })));
 
 	var maxy = d3.max(data, function(d) { return +d.totalhearing; });
   var miny = d3.min(data, function(d) { return +d.totalhearing; });
 
-	y.domain([miny, maxy]);
+	ovy.domain([miny, maxy]);
 
   
 
 	//x2.domain([x.domain()[0],x.domain()[1]+1]);
-  x2.domain(x.domain());
-	y2.domain(y.domain()); 
+  ovx2.domain(ovx.domain());
+	ovy2.domain(ovy.domain()); 
 
   //console.log(x2.domain());
 
   //Insert the y Axis
   focus.append("g")
       .attr("class", "y axis")
-      .call(yAxis);
+      .call(ovyAxis);
 	
   //This in the big chart, which is the focus
   focusGraph = barsGroup.selectAll(".bar")
@@ -107,7 +108,7 @@ d3.json("http://www.cs.odu.edu/~hdo/InfoVis/navy/databybirthyear.php?birthyear=1
       .on("mouseover", function(d,i)
           {
             tip.html("<strong>Worker ID:</strong> <span style='color:red'>" + d.sixplaceid + "</span>");
-  
+              selected_worker_id = d.sixplaceid;
                tip.show();
 
               d3.select(this).style("fill", "brown");
@@ -163,14 +164,18 @@ d3.json("http://www.cs.odu.edu/~hdo/InfoVis/navy/databybirthyear.php?birthyear=1
             var viewinfo = d3.selectAll("#info");
             viewinfo.html(d.sixplaceid);
             d3.selectAll("#info").html = "aaa";
+
+
+            //d3.select("#chartseconddetail").remove();
+            draw_chart_detail_worker(d.sixplaceid);
             
           
         })
-      .attr("x", function(d,i) { return x(i); })
-      .attr("width", function(d, i) { return width/(x.domain()[1]-x.domain()[0]+1); })
+      .attr("x", function(d,i) { return ovx(i); })
+      .attr("width", function(d, i) { return ovwidth/(ovx.domain()[1]-ovx.domain()[0]+1); })
 	    .attr("class", function(d) { return "bar bar--" + (d.totalhearing < 0 ? "negative" : "positive"); })
-       .attr("y", function(d) { return y(Math.max(0, d.totalhearing)); })
-  .attr("height", function(d) { return Math.abs(y(d.totalhearing) - y(0))});
+       .attr("y", function(d) { return ovy(Math.max(0, d.totalhearing)); })
+  .attr("height", function(d) { return Math.abs(ovy(d.totalhearing) - ovy(0))});
 	
     //this is the slider, context bar chart
      context.append("path")
@@ -180,23 +185,23 @@ d3.json("http://www.cs.odu.edu/~hdo/InfoVis/navy/databybirthyear.php?birthyear=1
 
   context.append("g")
       .attr("class", "x axis")
-      .attr("transform", "translate(0," + height2 + ")")
-      .call(xAxis2);
+      .attr("transform", "translate(0," + ovheight2 + ")")
+      .call(ovxAxis2);
 
   context.append("g")
       .attr("class", "x brush")
       .call(brush)
     .selectAll("rect")
       .attr("y", -6)
-      .attr("height", height2 + 7);
+      .attr("height", ovheight2 + 7);
 		
 	
 });
 
 function brushed() {
-  x.domain(brush.empty() ? x2.domain() : brush.extent());
+  ovx.domain(brush.empty() ? ovx2.domain() : brush.extent());
   focus.select(".x.axis").call(xAxis);
-  focusGraph.attr("x", function(d, i) { return x(i); });
-  focusGraph.attr("width", function(d, i) { return width/(x.domain()[1]-x.domain()[0]+1); });
+  focusGraph.attr("x", function(d, i) { return ovx(i); });
+  focusGraph.attr("width", function(d, i) { return width/(ovx.domain()[1]-ovx.domain()[0]+1); });
 }
 
