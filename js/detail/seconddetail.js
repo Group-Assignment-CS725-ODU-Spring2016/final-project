@@ -6,6 +6,10 @@
           height = 500 - margin.top - margin.bottom;
 
 
+      var insetWidth = 500, insetHeight = height;
+
+
+        
       
 
       var svg = d3.select("#chartseconddetail").append("svg")
@@ -122,20 +126,15 @@
         .attr('y', y(109))
         .attr('text-anchor', 'end');
 
-//d3.select("#slider").remove();
-var insetWidth = 400, insetHeight = 300;
-        var inset = d3.select("#inset").append("svg")
-            .attr("width", insetWidth + margin.left + margin.right)
-            .attr("height", insetHeight + margin.top + margin.bottom)
-            .append("g")
-            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        
 
     function draw_chart_detail_worker (workerid)      
 
 {
 
 
-      d3.json("http://www.cs.odu.edu/~hdo/InfoVis/navy/dataworkerid.php?workerid=000005", function(err, data) {
+      d3.json("http://www.cs.odu.edu/~hdo/InfoVis/navy/dataworkerid.php?workerid=" + workerid, function(err, data) {
         // Create step values for slider : array from 0 to data.length()-1
         var stepValues = []
         for(var s=0; s<data.length; s++) {
@@ -143,7 +142,18 @@ var insetWidth = 400, insetHeight = 300;
         }
         
         // Record last slider value
-        sliderValue = 0
+        sliderValue = 0;
+
+
+        d3.select("#slider").selectAll("*").remove();
+        d3.select("#inset").selectAll("*").remove();
+
+
+        var inset = d3.select("#inset").append("svg")
+            .attr("width", insetWidth + margin.left + margin.right)
+            .attr("height", insetHeight + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
         // Initialize slider
         var slider = d3.slider()
@@ -178,7 +188,7 @@ var insetWidth = 400, insetHeight = 300;
         // Render the slider in the div
         var slider = d3.select('#slider').call(slider);
         
-        
+         //d3.select('#slider11').call(d3.slider()
             
         var xInset = d3.scale.linear()
         .range([0, insetWidth]);
@@ -297,13 +307,14 @@ var insetWidth = 400, insetHeight = 300;
           
           // Label slider button
           if(slider !== undefined) slider.select(".draggertext").style("display", "none")
-          setTimeout(function() {
-            slider.select(".draggertext")
-              .text("Age = " + data.age + ", " + "Job = " + data.jobId)
-              .style("display", "")
-          }, 300)
-        }
+            setTimeout(function() {
+              slider.select(".draggertext")
+                .text("Age = " + data.age + ", " + "Job = " + data.jobId)
+                .style("display", "")
+            }, 300
+            )} /*end of laber for slider*/
         
+
         function parseData(data) {
           var newData = {}
           
@@ -351,7 +362,7 @@ var insetWidth = 400, insetHeight = 300;
           newData["TotalHearing"] = totalHearing
           
           return newData
-        }
+        } /*end parse data*/
         
         // Create initial graph for 1st element
         createGraph(data[0])
