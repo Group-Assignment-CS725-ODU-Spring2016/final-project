@@ -1,0 +1,70 @@
+body {
+	font-family: sans-serif;
+	margin: 20px;
+}
+#container {
+	width: 600px;
+	height: 330px;
+	border: 2px solid gray;
+	padding-bottom: 20px;
+	position: relative;
+}
+#chart {
+	height: 300px;
+	padding-bottom: 40px;
+}
+.axis text {
+	fill: #888;
+}
+.x.axis text {
+	font-size: 88%;
+}
+.btn { 
+	font-family: sans-serif;
+	margin: 33px 0 0 2px;
+	padding: 9px 12px;
+	border: 1px solid gray;
+	text-decoration: none;
+	color: black;
+	background: #CCC;
+}
+#btns {
+	float: right;
+	margin-right: 20px;
+}
+a.btn:hover { 
+	text-decoration: none;
+	color: black;
+	background: #BBB;
+}
+#hover {
+	position: absolute;
+	top: 15px;
+	right: 20px;
+	width: 290px;
+}
+#hover h2 { 
+	width: 90px; 
+	float: left; 
+	text-align: right;
+}
+#hover .key-value {
+	margin-top: 12px;
+	float:left;
+	width: 100px;
+	text-align: center;
+}
+#hover .value {
+	color: #EE8C10; 
+	font-size:125%;
+}
+#hover .key {
+	font-size: 90%;
+	color: #777;
+}
+p {
+	color: #777;
+}
+.byline {
+	margin:-10px 0 30px 0;
+}
