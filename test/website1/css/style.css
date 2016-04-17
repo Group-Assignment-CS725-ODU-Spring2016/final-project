@@ -1,0 +1,93 @@
+#slider_worker_detail {
+  width: 550px;
+ margin: 0 0 0 55px;
+}
+  
+  #info {
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 50px;
+    margin-left: 10px;
+  }
+
+  .axis text {
+  	fill: #888;
+  }
+  .x.axis text {
+  	font-size: 88%;
+  }
+
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: #000;
+  }
+
+  .tick {
+    font: 10px sans-serif;
+  }
+
+/*
+  http://colorbrewer2.org
+  for the path - diverging - the second column
+  ['#c51b7d','#de77ae','#f1b6da','#fde0ef','#f7f7f7','#e6f5d0','#b8e186','#7fbc41','#4d9221']*/
+
+  path.left {
+    fill: none;
+    stroke: #f1b6da;
+  /*  stroke-width: 3px;*/
+  }
+
+  path.right {
+    fill: none;
+    stroke: #b8e186;
+/*    stroke-width: 3px;*/
+  }
+
+  path.dotted {
+    stroke-dasharray: 5,2.5;
+  }
+
+  circle.left {
+    fill: black;
+  }
+
+  circle.right {
+    fill: blue;
+  }
+
+  .label {
+    font-family: 'Helvetica Neue', Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    text-anchor: middle;
+  }
+
+  #top-jobs {
+    font-size: 10px;
+    margin-top: 20px;
+  }
+
+  #info-bottom {
+    font-size: 10px;
+    margin-left: 60px;
+  }
+
+  #top-levels, #top-hearings {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  #top-levels table, #top-jobs table, #top-hearings table {
+    border: 1px solid silver;
+  }
+
+  #top-levels table {
+    display: inline-table;
+    margin-right: 10px;
+  }
+
+  #top-levels table td, #top-jobs table td {
+    padding: 1px 6px 1px 6px;
+  }
+  
