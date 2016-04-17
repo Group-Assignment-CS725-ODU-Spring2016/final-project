@@ -55,11 +55,11 @@ return function module() {
 
   function slider(selection) {
 	  
-	  if (selection.attr('id')=='chart2_jobid_slider')
-	  {	
-		  min = 1;
-		  max = 1017;
-	  }
+	  // if (selection.attr('id')=='chart2_jobid_slider')
+	  // {	
+		 //  min = 1;
+		 //  max = 1017;
+	  // }
 	  
     selection.each(function() {
 

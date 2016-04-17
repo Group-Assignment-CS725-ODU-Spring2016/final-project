@@ -1,17 +1,16 @@
 //	var color = ['#fff7bc','#fee391','#fec44f','#fe9929','#ec7014','#cc4c02','#993404','#662506'];
+//var color = ['#fff7bc','#fee391','#fec44f','#fe9929','#ec7014','#cc4c02','#993404','#662506'];
 var color = ['#E3F2FD','#BBDEFB','#90CAF9','#64B5F6','#42A5F5','#2196F3','#993404','#662506'];
-
 	
       var margin = {top: 50, left: 120, right: 20, bottom: 20},
           width = 920 - margin.left - margin.right,
           height = 500 - margin.top - margin.bottom;
 
+
+
+
 	var numberofdatatokeep = 10;
 	var historydata = {};
-
-
-
-
 
   var svg = d3.select("#chart2").append("svg")
   .attr("width", width + margin.left + margin.right)
@@ -160,6 +159,8 @@ function draw_chart2(jobid,minage,maxage)
 		// svg.selectAll("circle").remove()
 
     // Add line
+    svg.selectAll("path").remove();
+
     var addLine = function (data, cls) {
       
 	 //  //save history data
@@ -197,7 +198,7 @@ function draw_chart2(jobid,minage,maxage)
 		.attr("stroke-dasharray", totalLength + " " + totalLength)
 		.attr("stroke-dashoffset", totalLength)
 		.transition()
-		.duration(1000)
+		.duration(500)
 		.ease("linear")
 		.attr("stroke-dashoffset", 0);
 

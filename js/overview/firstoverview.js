@@ -5,7 +5,11 @@ var currentSelected;
         var currentItem;
 var maxy,miny;
 
-var ovmargin = {top: 100, right: 10, bottom: 100, left: 40},
+var jobid = 1; //default jobid = 1
+var minage =16;
+var maxage = 90;
+
+var ovmargin = {top: 10, right: 10, bottom: 100, left: 40},
     ovmargin2 = {top: 430, right: 10, bottom: 40, left: 40},
     ovwidth = 960 - ovmargin.left - ovmargin.right,
     ovheight = 500 - ovmargin.top - ovmargin.bottom,
@@ -161,7 +165,8 @@ function load_first_overview(filename)
                 .on('click',  function(d,i)
                 { 
 
-                    
+                    jobid = d.JobCodeNumber;
+
                     $("#divsecondchart").fadeIn(2000);
 
                     if (currentSelected)
@@ -180,8 +185,8 @@ function load_first_overview(filename)
                     currentSelected = this;
 
                     // //print info
-                    // var viewinfo = d3.selectAll("#info");
-                    // viewinfo.html(d.JobCodeNumber);
+                     var viewinfo = d3.selectAll("#dis_job_id");
+                     viewinfo.html(d.JobCodeNumber);
                     // d3.selectAll("#info").html = "aaa";
 
                     PieChart(d.Male,d.Total-d.Male,d.Total,"#piechartdetail");
