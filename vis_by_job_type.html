@@ -3,6 +3,13 @@
 <head>
   <title>Navy</title>
   
+  <style>
+  .vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+  </style>
   
     <link href="css/bootstrap.css" rel="stylesheet">
     <!-- Custom styles for this template -->
@@ -15,6 +22,7 @@
 	
 </head>
   <body>
+
 
     <div class="container">
 
@@ -67,38 +75,46 @@
         	<div class="col-lg-1">
 	  		</div>
 
-        	<div class="col-lg-3 text-center vcenter" id="piechart"></div>
+	  		<br><br><br><br><br><br>
+        	<div class="col-lg-3  text-center" id="piechart">
+        		
+        	</div>
 
     	</div>
 	</div> <!-- end first overview job type -->
 	
 
 	<!-- first detail for job type -->
+	<div class="container-fluid">
+		<div class="row" id="divsecondchart" style="display:none">
+			<div class="col-lg-1">
+				
+				<div class="btn-group-vertical btn-group-md">
+						<button id="hide_the_detail"  onClick=" $('#divsecondchart').hide();" class="btn btn-success">Hide Detail</button>
+	       				
+	       			</div>
 
-	<div class="row">
-		<div class="col-lg-1">
+			</div>
+				
+				<div class="col-lg-6">
+
+					<div id="chartseconddetail"></div> 
+			  		<div id="slider" style="margin-left: 120px; width: 800px"></div> 
+			  	</div>
+		  		
+		  		<div class="col-lg-1">
+		  		</div>
+
+		  		<br><br><br><br><br><br>
+		  		<div class="col-lg-3 text-center" id="piechartdetail">
+		  		
+		  		</div>
 			
-
 		</div>
-			
-			<div class="col-lg-6">
-
-				<div id="chartseconddetail"></div> 
-		  		<div id="slider" style="margin-left: 120px; width: 800px"></div> 
-		  	</div>
-	  		
-	  		<div class="col-lg-1">
-	  		</div>
-
-	  		<div class="col-lg-3 text-center vcenter" id="piechartdetail">
-	  			
-	  		</div>
-		
-
 	</div> <!-- first detail for job type -->
 
-	<div> You are selected:  </div>
-	<div id="info">  </div>
+	<!-- <div> You are selected:  </div>
+	<div id="info">  </div> -->
 
 
 		<!-- scripts for the first vis -->
@@ -118,6 +134,7 @@
 		<!-- bootstrap -->
  		<script src="js/jquery-2.2.3.min.js"></script>
     	<script src="js/bootstrap.js"></script>
+
     	
 
   </body>

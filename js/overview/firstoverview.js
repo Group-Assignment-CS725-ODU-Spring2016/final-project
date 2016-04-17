@@ -116,7 +116,7 @@ function load_first_overview(filename)
               .enter().append("rect")
               .on("mouseover", function(d,i)
                   {
-
+                    
                    
                     PieChart(d.Male,d.Total-d.Male,d.Total,"#piechart");
 
@@ -132,7 +132,6 @@ function load_first_overview(filename)
                   })
                 .on("mouseout", function(d,i)
                   {
-                  
                     //clear bar chart
                     d3.selectAll("#piechart").html("");
                     tip.hide();
@@ -162,6 +161,9 @@ function load_first_overview(filename)
                 .on('click',  function(d,i)
                 { 
 
+                    
+                    $("#divsecondchart").fadeIn(2000);
+
                     if (currentSelected)
                     {
                       if (currentD.JobCount<0)
@@ -177,10 +179,10 @@ function load_first_overview(filename)
                     currentD = d;
                     currentSelected = this;
 
-                    //print info
-                    var viewinfo = d3.selectAll("#info");
-                    viewinfo.html(d.JobCodeNumber);
-                    d3.selectAll("#info").html = "aaa";
+                    // //print info
+                    // var viewinfo = d3.selectAll("#info");
+                    // viewinfo.html(d.JobCodeNumber);
+                    // d3.selectAll("#info").html = "aaa";
 
                     PieChart(d.Male,d.Total-d.Male,d.Total,"#piechartdetail");
                     
@@ -239,10 +241,6 @@ function load_first_overview(filename)
 
         function brushed() {
           ovx.domain(brush.empty() ? ovx2.domain() : brush.extent());
-
-
-          console.log(ovx.domain());
-          console.log(data[1]);
 
           //focus.select(".x.axis").call(ovxAxis);
           focusGraph.attr("x", function(d, i) { return ovx(i); });
