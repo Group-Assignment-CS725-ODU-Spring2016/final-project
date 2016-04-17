@@ -1,73 +1,8 @@
+function PieChart(male,female,total,divposition){
 
-			var elt = d3.select("#chart");
-			var width = 1200, 
-				height = 400;
-			var stockData = null,
-				yMax;
-			function showHover(el, d) {
-				var hoverDiv = d3.selectAll("#hover");
-				var html = '<div class="key-value"><div class="key"><b>Job Id</b></div><div class="value">'+d[0]+'</div></div>';
-				<!--html += '<div class="key-value"><div class="value">'+d[2]+'%</div><div class="key">Weight</div></div>'; -->
-				html += '<div class="key-value"><div class="key"><b>Job Count</b></div><div class="value">'+d3.format(".2")(+d[1]*1000000)+'</div></div>';
-				html += '<div class="key-value"><div class="key"><b>Age range</b></div><div class="value">'+d[2]+" - "+d[3]+'</div></div>';
-		
-				hoverDiv.html(html);
-				hoverDiv.style("opacity",1);
-				var male = d[5];
-				//var jobid = d[0];
-				var female = d[4];
-				var total = d[6];
-				PieChart(male,female,total);
-			}
-			
-			
-			function hideHover(el, d) {
-				var hoverDiv = d3.selectAll("#hover");
-				hoverDiv.style("opacity",1e-6);
-				d3.selectAll("#pie").html("");
-				PieChart(676197,58130,734327);
-			}
-			var rangeWidget = d3.elts.startEndSlider().minRange(40);
-			var milDol = function(v) { return d3.format(".2")(v*1000000)};
-			var myChart = d3.elts.barChart()
-									.width(width)
-									.height(height)
-									
-									.rangeWidget(rangeWidget)
-									.yAxis(d3.svg.axis().orient("left").tickSize(6, 0).tickFormat(milDol))
-									//.yAxis(d3.svg.axis().orient("left").tickSize(6, 0))
-									.xDomain([0, 40])
-									
-									.xAxisIfBarsWiderThan(19)
-									.xAxisAnimate(false)
-									.mouseOver(function(el, d) { showHover(el, d) })	
-									.mouseOut(function(el, d) { hideHover(el, d) })
-									.margin({top: 40, right: 20, bottom: 60, left: 100});
+    //var divposition = "#";
 
-			redraw = function(sortCol) {
-				stockData = _.sortBy(stockData, function(d) { if (sortCol===1) return -d[1]; else return -(-d[0]); });
-				myChart.yMax(function(data) {
-							var high = d3.max(data, function(d) {return d[1]}); 
-							return Math.pow(high*high*yMax,1/3); // scales up small values, but not to the top
-						});
-						
-						
-						
-						
-				elt.datum(stockData).call(myChart);
-				//d3.sum(data, function(d) { return d.Male; });
-				PieChart(676197,58130,734327);
-			
-			}
-			d3.csv('jobcountdetails.csv', function(data) {
-				stockData = _.map(data, function(d) { return [d.JobCodeNumber, d.JobCount/1e6, d.MinimumAge, d.MaximumAge, d.Female, d.Male, d.Total] });
-				yMax = d3.max(stockData, function(d) {return d[1]}); 
-				redraw(1);
-			});
-			
-				
-	function PieChart(male,female,total){
-		d3.selectAll("#pie").html("");
+       	d3.selectAll(divposition).html("");
 		var round = Math.round;
 		var malepercent = round((male/total)*100);
         var femalepercent = round((female/total)*100);		
@@ -87,7 +22,7 @@
             {"label":""+" "+femalepercent+'%', "value":female}
             ];
     
-    var vis = d3.select("#pie")
+    var vis = d3.select(divposition)
         .append("svg:svg")              //create the SVG element inside the <body>
         .data([data])                   //associate our data with the document
             .attr("width", w)           //set the width and height of our visualization (these will be attributes of the <svg> tag
@@ -149,3 +84,6 @@
 				};
 			}
 		}
+
+
+

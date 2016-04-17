@@ -16,10 +16,6 @@ function selected_year_chart(birthyear)
 d3.select("#overview_worker_id").selectAll("*").remove();
 
 
-var svg = d3.select("#overview_worker_id").append("svg")
-    .attr("width", ovwidth + ovmargin.left + ovmargin.right)
-    .attr("height", ovheight + ovmargin.top + ovmargin.bottom);
-
 
 var ovx = d3.scale.linear().range([0, ovwidth]);
 
@@ -27,6 +23,15 @@ var ovx2 = d3.scale.linear().range([0, ovwidth]);
 
 var ovy = d3.scale.linear().range([ovheight,0]);
 var ovy2 = d3.scale.linear().range([ovheight2, 0]);
+
+
+
+var svg = d3.select("#overview_worker_id").append("svg")
+    .attr("width", ovwidth + ovmargin.left + ovmargin.right)
+    .attr("height", ovheight + ovmargin.top + ovmargin.bottom);
+    
+    
+
 
 var ovxAxis = d3.svg.axis().scale(ovx)
   
@@ -46,6 +51,7 @@ var focus = svg.append("g")
 
 var barsGroup = focus.append("g")
     .attr('clip-path', 'url(#clip)');
+
 
 //Define small slider (context) 
 var context = svg.append("g")
@@ -85,7 +91,14 @@ var currentItem;
 svg.call(tip);
 
     //Looping through data
-    d3.json("http://www.cs.odu.edu/~hdo/InfoVis/navy/databybirthyear.php?birthyear="+birthyear, function(err, data){
+    d3.json("http://www.cs.odu.edu/~hdo/InfoVis/navy/databybirthyear.php?birthyear="+birthyear, function(err, data)
+
+    {
+      var zoom = d3.behavior.zoom()
+    .x(ovx)
+    .y(ovy)
+    .scaleExtent([1, 10])
+    .on("zoom", zoomed);
      
       //x,y for focus chart
       //x2,y2 for context chart
@@ -109,6 +122,9 @@ svg.call(tip);
       focus.append("g")
           .attr("class", "y axis")
           .call(ovyAxis);
+
+
+
     	
       //This in the big chart, which is the focus
       focusGraph = barsGroup.selectAll(".bar")
@@ -184,7 +200,10 @@ svg.call(tip);
           .attr("width", function(d, i) { return ovwidth/(ovx.domain()[1]-ovx.domain()[0]+1); })
     	    .attr("class", function(d) { return "bar bar--" + (d.totalhearing < 0 ? "negative" : "positive"); })
            .attr("y", function(d) { return ovy(Math.max(0, d.totalhearing)); })
-      .attr("height", function(d) { return Math.abs(ovy(d.totalhearing) - ovy(0))});
+      .attr("height", function(d) { return Math.abs(ovy(d.totalhearing) - ovy(0))})
+    .call(zoom);
+    ;
+      
     	
         //this is the slider, context bar chart
          context.append("path")
@@ -204,8 +223,17 @@ svg.call(tip);
           .attr("y", -6)
           .attr("height", ovheight2 + 7);
     		
-    	
+    
+    function zoomed() {
+      
+       
+       focusGraph.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+    }	
+
     });
+
+
+    
 
     function brushed() {
       ovx.domain(brush.empty() ? ovx2.domain() : brush.extent());
@@ -229,6 +257,10 @@ svg.call(tip);
         var value = d3.select(this).property("value");
         
         selected_year_chart(value);
+
+        
+ 
+
       });
 
     select.selectAll("option")
@@ -239,5 +271,11 @@ svg.call(tip);
         .text(function (d) { return d.birthyear; });
   });
 
- 
+d3.select("button").on("click", reset);
+
+        function reset() {
+          selected_year_chart(1928);
+        }
+
+//initial chart
 selected_year_chart(1928);

@@ -1,22 +1,20 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
+<title>Zoom + Pan</title>
 <style>
 
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   position: relative;
   width: 960px;
 }
 
-.axis text {
+svg {
   font: 10px sans-serif;
+  /*shape-rendering: crispEdges;*/
 }
 
-.axis path,
-.axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
+rect {
+  fill: #ddd;
 }
 
 .bar {
@@ -24,60 +22,89 @@ body {
   fill-opacity: .9;
 }
 
-.x.axis path {
-  display: none;
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #fff;
 }
 
-label {
+button {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  right: 30px;
+  top: 30px;
 }
 
 </style>
-<label><input type="checkbox"> Sort values</label>
 <button>Reset</button>
 <script src="//d3js.org/d3.v3.min.js"></script>
 <script>
 
+function draw()
+{
+
 var margin = {top: 20, right: 20, bottom: 30, left: 40},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
-
-var formatPercent = d3.format(".0%");
-
-var x = d3.scale.ordinal()
-    .rangeRoundBands([0, width], .1, 1);
 
 var x = d3.scale.linear()
     .domain([-width / 2, width / 2])
     .range([0, width]);
 
 var y = d3.scale.linear()
+    .domain([-height / 2, height / 2])
     .range([height, 0]);
 
 var xAxis = d3.svg.axis()
     .scale(x)
-    .orient("bottom");
+    .orient("bottom")
+    .tickSize(-height);
 
 var yAxis = d3.svg.axis()
     .scale(y)
     .orient("left")
-    .tickFormat(formatPercent);
+    .ticks(5)
+    .tickSize(-width);
 
 
-    var zoom = d3.behavior.zoom()
-    .x(x)
-    .y(y)
-    .scaleExtent([1, 10])
-    .on("zoom", zoomed);
+
+var formatPercent = d3.format(".0%");
+
+
+ var y = d3.scale.linear()
+     .range([height, 0]);
+
+// var xAxis = d3.svg.axis()
+//     .scale(x)
+//     .orient("bottom");
+
+// var yAxis = d3.svg.axis()
+//     .scale(y)
+//     .orient("left")
+//     .tickFormat(formatPercent);
+
 
 var svg = d3.select("body").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-    .call(zoom);
+   
+
+svg.append("rect")
+    .attr("width", width)
+    .attr("height", height);
+
+svg.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + height + ")")
+    .call(xAxis);
+
+svg.append("g")
+    .attr("class", "y axis")
+    .call(yAxis);
+
+
+
 
 d3.tsv("data1.tsv", function(error, data) {
 
@@ -85,9 +112,14 @@ d3.tsv("data1.tsv", function(error, data) {
     d.frequency = +d.frequency;
   });
 
+  var zoom = d3.behavior.zoom()
+    .x(x)
+    .y(y)
+    .scaleExtent([1, 10])
+    .on("zoom", zoomed);
 
 
-  x.domain([0,400]);
+  x.domain(data.map(function(d,i) { return i; }));
   y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
 
   svg.append("g")
@@ -95,27 +127,26 @@ d3.tsv("data1.tsv", function(error, data) {
       .attr("transform", "translate(0," + height + ")")
       .call(xAxis);
 
-
-
-  svg.selectAll(".bar")
+  var aaa = svg.selectAll(".bar")
       .data(data)
     .enter().append("rect")
       .attr("class", "bar")
-      .attr("x", function(d,i) { return i*20; })
-      //.attr("width", x.rangeBand())
-      .attr("width", 15)
+      .attr("x", function(d,i) {console.log(i*100); return i*100; })
+      .attr("width", 40)
       
       .attr("y", function(d) { return y(d.frequency); })
-      .attr("height", function(d) { return height - y(d.frequency); });
+      .attr("height", function(d) { return height - y(d.frequency); })
+      .call(zoom);
 
-
-});
 
 function zoomed() {
-    svg.select(".x.axis").call(xAxis);
+  svg.select(".x.axis").call(xAxis);
   svg.select(".y.axis").call(yAxis);
-  svg.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+  aaa.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
 }
+
+
+d3.select("button").on("click", reset);
 
 function reset() {
   d3.transition().duration(750).tween("zoom", function() {
@@ -127,6 +158,23 @@ function reset() {
     };
   });
 }
+
+});
+
+
+
+}
+
+draw();
+
+// function zoomed() {
+//   svg.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+
+//   //svg.attr("transform", "scale(" + d3.event.scale + ", 1)");
+
+//   //svg.attr("transform", "scale(1, " + d3.event.scale + ")");
+// }
+
 
 
 </script>
