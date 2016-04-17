@@ -137,7 +137,11 @@ function load_first_overview(filename)
                 .on("mouseout", function(d,i)
                   {
                     //clear bar chart
+
                     d3.selectAll("#piechart").html("");
+
+                    PieChart(676197,58130,676197+58130,"#piechart");
+                    
                     tip.hide();
                    // console.log(i);
 
@@ -271,3 +275,4 @@ function reload_jobid()
 }
 
 load_first_overview ("js/overview/jobcountdetails_by_number_of_worker.csv");
+

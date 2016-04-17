@@ -114,6 +114,8 @@ d3.json("http://www.cs.odu.edu/~hdo/InfoVis/navy/databybirthyear.php?birthyear=1
           })
         .on("mouseout", function(d,i)
           {
+
+            
           
             tip.hide();
            // console.log(i);

@@ -232,6 +232,9 @@
         
             xInset.domain([0, data.length - 1])
             yInset.domain([d3.min(totals), d3.max(totals)])
+            
+            yInset.domain([0,1000])
+
             gxAxisInset.call(xAxisInset)
             gyAxisInset.call(yAxisInset)
             

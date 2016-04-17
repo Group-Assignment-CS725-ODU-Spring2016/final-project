@@ -2,6 +2,8 @@ function PieChart(male,female,total,divposition){
 
     //var divposition = "#";
 
+
+
        	d3.selectAll(divposition).html("");
 		var round = Math.round;
 		var malepercent = round((male/total)*100);
@@ -15,9 +17,22 @@ function PieChart(male,female,total,divposition){
 		//var jobs = [jobid];
 		 var w = 300,                        //width
 			 h = 300,                            //height
-			 r = 100,                            //radius
-		color = d3.scale.category10();     //builtin range of colors
-	
+			 r = 100;                            //radius
+		
+
+        var color;     //builtin range of colors
+	   
+
+        if (divposition=="#piechartdetail")
+    {
+       color = d3.scale.category20();     //builtin range of colors
+    }
+    else
+    {
+        color = d3.scale.category10();     //builtin range of colors
+    }
+
+
     data = [{"label":""+" "+malepercent+'%', "value":male}, 
             {"label":""+" "+femalepercent+'%', "value":female}
             ];
@@ -86,4 +101,4 @@ function PieChart(male,female,total,divposition){
 		}
 
 
-
+PieChart(676197,58130,676197+58130,"#piechart");
