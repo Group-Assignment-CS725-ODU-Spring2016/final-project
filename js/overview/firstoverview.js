@@ -9,7 +9,7 @@ var jobid = 1; //default jobid = 1
 var minage =16;
 var maxage = 90;
 
-var ovmargin = {top: 10, right: 10, bottom: 100, left: 40},
+var ovmargin = {top: 10, right: 10, bottom: 100, left: 60},
     ovmargin2 = {top: 430, right: 10, bottom: 40, left: 40},
     ovwidth = 960 - ovmargin.left - ovmargin.right,
     ovheight = 500 - ovmargin.top - ovmargin.bottom,
@@ -46,10 +46,22 @@ function load_first_overview(filename)
             .y0(ovheight2)
             .y1(function(d) { return ovy2(d.JobCount); });
 
+
+
         var svg = d3.select("#overview_job_id").append("svg")
             .attr("width", ovwidth + ovmargin.left + ovmargin.right)
             .attr("height", ovheight + ovmargin.top + ovmargin.bottom);
 
+
+        svg.append("g")
+     
+    
+    .append("text")
+    .attr("transform", "rotate(-90)")
+    .attr("x", -(ovheight/2))
+    .attr("y", 10)
+    .attr("class", "label")
+    .text("Number of Workers");
 
          var zoom = d3.behavior.zoom()
             .x(ovx)

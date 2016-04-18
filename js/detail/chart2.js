@@ -155,7 +155,7 @@ function draw_chart2(jobid,minage,maxage)
     // Remove existing path and circle first
 	svg.selectAll("path")
 		.attr("stroke-width", 2)
-		.attr('opacity', function(d,i){ return 0.2;})
+		//.attr('opacity', function(d,i){ return 0.2;})
 		// svg.selectAll("circle").remove()
 
     // Add line
@@ -188,8 +188,8 @@ function draw_chart2(jobid,minage,maxage)
     var lineGraph =  svg.append("path")
 		.datum(data["y"])
 		.attr("class", cls)
-		.attr('opacity', 1)
-		.attr("stroke-width", 3)
+		//.attr('opacity', 1)
+		.attr("stroke-width", 2)
 		.attr("d", line);
 		
 	var totalLength = lineGraph.node().getTotalLength();
