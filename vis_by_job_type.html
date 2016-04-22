@@ -107,15 +107,15 @@
 
 			</div>
 				
-				<div class="col-lg-6">
-				 	
-				 	<h2 class="text-center"> Average Hearing Level by Age of Job ID = <span id="dis_job_id"></span></h2>
-      				
-      				<div id="chart2"></div>
-      				<p>Age Range from <span id="chart2_age_min">20</span> to <span id="chart2_age_max">25</span></p>
-    				<div id="chart2_age_slider" class="slide3"></div>
+			<div class="col-lg-6">
+			 	
+			 	<h2 class="text-center"> Average Hearing Level by Age of Job ID = <span id="dis_job_id"></span></h2>
+  				
+  				<div id="chart2"></div>
+  				<p>Age Range from <span id="chart2_age_min">20</span> to <span id="chart2_age_max">25</span></p>
+				<div id="chart2_age_slider" class="slide3"></div>
 
-					</div>
+			</div>
 		  		
 		  		<div class="col-lg-1">
 		  		</div>
@@ -123,12 +123,34 @@
 		  		<br><br><br><br><br><br>
 		  		<div class="col-lg-3 text-center" id="piechartdetail">
 
-
-		  		
 		  		</div>
 			
 		</div>
 	</div> <!-- first detail for job type -->
+
+	<!-- heatmap detail chart -->
+	<div class="container-fluid">
+		<div class="row" id="heatmapchart">
+
+			<div class="col-lg-1">
+				<div class="btn-group-vertical btn-group-md">
+						<!-- <button id="hide_the_detail"  onClick=" $('#divsecondchart').hide();" class="btn btn-success">Hide Detail</button> -->
+	       				
+	       		</div>
+
+			</div>
+				
+			<div class="col-lg-6">
+			 	
+			 	<h2 class="text-center"> Heatmap Chart = <span id="dis_job_id"></span></h2>
+  				
+  				<div id="heatmapchart"></div>
+  				
+				
+			</div>
+		</div>
+
+	</div> <!-- second detail chart -->
 
 	<!-- <div> You are selected:  </div>
 	<div id="info">  </div> -->
@@ -140,7 +162,6 @@
     	<script src="js/bootstrap.js"></script>
 
 		<!-- scripts for the first vis -->
-
 
 
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.13/d3.min.js"></script>		
@@ -155,6 +176,7 @@
 		
 		<script type="text/javascript" src="js/detail/d3.slider.js"></script>
 		<script type="text/javascript" src="js/detail/chart2.js"></script>
+		<script type="text/javascript" src="js/detail/heatmap.js"></script>		
 	  
 
 		

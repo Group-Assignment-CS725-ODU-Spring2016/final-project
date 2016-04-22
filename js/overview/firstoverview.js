@@ -183,6 +183,8 @@ function load_first_overview(filename)
 
                     jobid = d.JobCodeNumber;
 
+                    draw_heatmap(jobid);
+
                     $("#divsecondchart").fadeIn(2000);
 
                     if (currentSelected)

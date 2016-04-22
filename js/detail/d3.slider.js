@@ -230,6 +230,8 @@ return function module() {
 					maxage=value[1];
 					draw_chart2(jobid,minage,maxage);
 					
+
+
 					
 				}
 				
@@ -240,6 +242,7 @@ return function module() {
 					jobid = value; //new jobid
 					draw_chart2(jobid,minage,maxage);
 					
+                    
 				}
 
   	} 

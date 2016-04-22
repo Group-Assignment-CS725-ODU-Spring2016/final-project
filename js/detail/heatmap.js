@@ -1,68 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-	<style type="text/css">
-		body {
-  			font: 10px sans-serif;
-		}
 
-        .d3-tip {
-  line-height: 1;
-  font-weight: bold;
-  padding: 12px;
-  background: rgba(0, 0, 0, 0.8);
-  color: #fff;
-  border-radius: 2px;
-}
 
-/* Creates a small triangle extender for the tooltip */
-.d3-tip:after {
-  box-sizing: border-box;
-  display: inline;
-  font-size: 10px;
-  width: 100%;
-  line-height: 1;
-  color: rgba(0, 0, 0, 0.8);
-  content: "\25BC";
-  position: absolute;
-  text-align: center;
-}
+function draw_heatmap(jobid)
+{
 
-/* Style northward tooltips differently */
-.d3-tip.n:after {
-  margin: -1px 0 0 0;
-  top: 100%;
-  left: 0;
-}
-
-.label {
-  font-weight: bold;
-}
-
-.tile {
-  shape-rendering: crispEdges;
-}
-
-.axis path,
-.axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
-}
-
-	</style>
-
-</head>
-<body>
-<div id='heatmapchart'></div>
-<script src="http://d3js.org/d3.v3.min.js"></script>	 
-<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
-<script type="text/javascript">
+svg.selectAll("svg").remove();
 
 var heatmapdata = [];
 
-d3.json("http://www.cs.odu.edu/~hdo/InfoVis/navy/dataagehearingbyjobid.php?jobid=23", function(err, data) {
+d3.json("http://www.cs.odu.edu/~hdo/InfoVis/navy/dataagehearingbyjobid.php?jobid=" + jobid, function(err, data) {
         
 
 //height of each row in the heatmap
@@ -98,7 +43,7 @@ var colorScale = d3.scale.linear()
      .domain([1,40])
      .range(["#deebf7","#ff7f00"]);
 
-var svg = d3.select("#heatmapchart").append("svg")
+var hmsvg = d3.select("#heatmapchart").append("svg")
     .attr("width", hmwidth + margin.left + margin.right)
     .attr("height", hmheight + margin.top + margin.bottom)
     .append("g")
@@ -108,13 +53,13 @@ var tip = d3.tip()
           .attr('class', 'd3-tip')
           .offset([-10, 0]);
 
-svg.call(tip);
+hmsvg.call(tip);
 
 
 
 // Add a x-axis with label.
-  svg.append("g")
-      .attr("class", "x axis")
+  hmsvg.append("g")
+      .attr("class", "y axis")
       .call(d3.svg.axis().scale(hmx).orient("bottom").ticks(10))
       .attr("transform", "translate(0," + (hmheight+10) + ")")
       .append("text")
@@ -126,7 +71,7 @@ svg.call(tip);
       .text("Total Hearing");
 
  // Add a y-axis with label.
-  svg.append("g")
+  hmsvg.append("g")
       .attr("class", "y axis")
       .attr("transform", "translate(-100,10)")
       .call(d3.svg.axis().scale(hmy).orient("left"))
@@ -138,7 +83,7 @@ svg.call(tip);
       .attr("transform", "rotate(-90)")
       .text("Age");
 
-var heatMap = svg.selectAll(".heatmap")
+var heatMap = hmsvg.selectAll(".heatmap")
     .data(data, function(d) { return d.age + ':' + d.th; })
     .enter().append("svg:rect")
     .attr("x", function(d) { return hmx(d.th) ; })
@@ -169,7 +114,4 @@ var heatMap = svg.selectAll(".heatmap")
 
 })
 
-</script>
-
-</body>
-</html>
+}

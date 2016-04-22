@@ -127,7 +127,7 @@ var color = ['#E3F2FD','#BBDEFB','#90CAF9','#64B5F6','#42A5F5','#2196F3','#99340
 function draw_chart2(jobid,minage,maxage)
 {
 	
-	console.log(jobid,minage,maxage);
+	//console.log(jobid,minage,maxage);
 
 	//	console.log("http://www.cs.odu.edu/~hdo/InfoVis/navy/datajobage.php?jobid="+jobid + "&minage="+minage +"&maxage=" +maxage);
 	
