@@ -2,21 +2,14 @@
 <meta charset="utf-8">
 <style>
 
-svg {
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  position: relative;
+  width: 960px;
+}
+
+.axis text {
   font: 10px sans-serif;
-}
-
-.bar {
-  fill: orange;
-}
-
-.bar:hover {
-  fill: orangered ;
-}
-
-.area {
-  fill: steelblue;
- /* clip-path: url(#clip);*/
 }
 
 .axis path,
@@ -26,87 +19,114 @@ svg {
   shape-rendering: crispEdges;
 }
 
-.brush .extent {
-  stroke: #fff;
-  fill-opacity: .125;
-  shape-rendering: crispEdges;
+.bar {
+  fill: steelblue;
+  fill-opacity: .9;
+}
+
+.x.axis path {
+  display: none;
+}
+
+label {
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
 
 </style>
-<body>
-<script src="d3.min.js"></script>
-
+<label><input type="checkbox"> Sort values</label>
+<button>Reset</button>
+<script src="//d3js.org/d3.v3.min.js"></script>
 <script>
 
-var focusGraph;
-
-var margin = {top: 10, right: 10, bottom: 100, left: 40},
-    margin2 = {top: 430, right: 10, bottom: 20, left: 40},
+var margin = {top: 20, right: 20, bottom: 30, left: 40},
     width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom,
-    height2 = 500 - margin2.top - margin2.bottom;
+    height = 500 - margin.top - margin.bottom;
 
-var x = d3.scale.linear().range([0, width]);
+var formatPercent = d3.format(".0%");
 
-var x2 = d3.scale.linear().range([0, width]),
-    y = d3.scale.linear().range([0,height]),
-    y2 = d3.scale.linear().range([0,height2]);
+var x = d3.scale.ordinal()
+    .rangeRoundBands([0, width], .1, 1);
 
-var xAxis = d3.svg.axis().scale(x)
-	.tickValues([1, 2, 3, 4, 5, 6,7,8, 9,10,11,12,13])
-	.orient("bottom");
+var x = d3.scale.linear()
+    .domain([-width / 2, width / 2])
+    .range([0, width]);
 
-var  xAxis2 = d3.svg.axis().scale(x2)
-    .orient("bottom"),
-	yAxis = d3.svg.axis().scale(y).orient("left");
+var y = d3.scale.linear()
+    .range([height, 0]);
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left")
+    .tickFormat(formatPercent);
+
+
+    var zoom = d3.behavior.zoom()
+    .x(x)
+    .y(y)
+    .scaleExtent([1, 10])
+    .on("zoom", zoomed);
 
 var svg = d3.select("body").append("svg")
     .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom);
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+    .call(zoom);
 
-svg.append("defs").append("clipPath")
-    .attr("id", "clip")
-  .append("rect")
-    .attr("width", width)
-    .attr("height", height);
-	
-var focus = svg.append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+d3.tsv("data1.tsv", function(error, data) {
 
-var barsGroup = focus.append("g")
-    .attr('clip-path', 'url(#clip)');
+  data.forEach(function(d) {
+    d.frequency = +d.frequency;
+  });
 
-d3.csv("sp500.csv", function(error, data) {
-    
-	var maxx = d3.max(data, function(d) { return +d.date; });
-	var maxy = d3.max(data, function(d) { return +d.price; });
-	x.domain([0,maxx]);
-	y.domain([0, maxy]);
-	x2.domain(x.domain());
-	y2.domain(y.domain()); 
 
-	focus.append("g")
-      .attr("class", "y axis")
-      .call(yAxis);
-	
-	focusGraph = barsGroup.selectAll(".bar")
+
+  x.domain([0,400]);
+  y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
+
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis);
+
+
+
+  svg.selectAll(".bar")
       .data(data)
     .enter().append("rect")
-      .attr("x", function(d) { return x(d.date); })
-      .attr("y", function(d) { return height - y(d.price); })
-      .attr("width", 20)
+      .attr("class", "bar")
+      .attr("x", function(d,i) { return i*20; })
       //.attr("width", x.rangeBand())
-      .attr("height", function(d) { return y(d.price); });
-	
-		
-	
+      .attr("width", 15)
+      
+      .attr("y", function(d) { return y(d.frequency); })
+      .attr("height", function(d) { return height - y(d.frequency); });
+
+
 });
 
-function brushed() {
-
-  x.domain(brush.empty() ? x2.domain() : brush.extent());
-  focus.select(".x.axis").call(xAxis);
-
+function zoomed() {
+    svg.select(".x.axis").call(xAxis);
+  svg.select(".y.axis").call(yAxis);
+  svg.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
 }
+
+function reset() {
+  d3.transition().duration(750).tween("zoom", function() {
+    var ix = d3.interpolate(x.domain(), [-width / 2, width / 2]),
+        iy = d3.interpolate(y.domain(), [-height / 2, height / 2]);
+    return function(t) {
+      zoom.x(x.domain(ix(t))).y(y.domain(iy(t)));
+      zoomed();
+    };
+  });
+}
+
 
 </script>

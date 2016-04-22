@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<head>
+  	<meta charset="utf-8" />
+  	<title>Worker Analysis</title>
+  	<link rel="stylesheet" href="css/d3.slider.css" />  
+  	<link rel="stylesheet" href="css/style.css">
+	 <link rel="stylesheet" href="http://sujeetsr.github.io/d3.slider/stylesheets/d3.slider.css" />
+	 <!-- <link rel="stylesheet" href="css/overviewstyle.css" />   -->
+
+</head>
+<html>
+	<body>
+		
+		<!-- Content for first overview -->
+		<h1>Worker Hearing Analysis</h1>
+	
+		<!-- <h2>Overview</h2> -->
+		
+		<div id="container">
+			
+			<div id="hover"></div>
+			<div id="overviewjobid"></div>
+			<div id="btns">
+				Sort by:
+				<a href="#" class="btn" onclick="redraw(1)">Number of Tests</a>
+				<a href="#" class="btn" onclick="redraw(0)">Worker ID</a>
+			</div>
+		</div>
+		
+		<div class="wrapper">
+	    <div id="chart4"></div>
+		<br><br>
+	    <div id="slider4"></div>
+	    
+	</div>
+		
+		<script src="http://d3js.org/d3.v3.min.js"></script>	 
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script> 
+
+		 <!-- first overview script -->
+		<script src="overview/barChart.js"></script>
+		<script src="overview/startEndSlider.js"></script>
+		<script src="overview/OverviewJobID.js"></script>
+		
+			<!-- chart 4 scripts -->
+	    <script type="text/javascript" src="http://sujeetsr.github.io/d3.slider/javascripts/d3.slider.js"></script>
+		 <script type="text/javascript" src="individual/chart4.js"></script>
+
+
+	</body>
+</html>
+
+
+

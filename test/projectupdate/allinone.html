@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<head>
+  	<meta charset="utf-8" />
+  	<title>Job type Analysis</title>
+  	<link rel="stylesheet" href="css/d3.slider.css" />  
+  	<link rel="stylesheet" href="css/style.css">
+	 <link rel="stylesheet" href="http://sujeetsr.github.io/d3.slider/stylesheets/d3.slider.css" />
+	 <!-- <link rel="stylesheet" href="css/overviewstyle.css" />   -->
+
+</head>
+<html>
+	<body>
+		
+		<!-- Content for first overview -->
+		<h1>Hearing Analysis by Job Type</h1>
+	
+		<!-- <h2>Overview</h2> -->
+		
+		<div id="container">
+			
+			<div id="hover"></div>
+			<div id="overviewjobid"></div>
+			<div id="btns">
+				Sort by:
+				<a href="#" class="btn" onclick="redraw(1)">Job Count</a>
+				<a href="#" class="btn" onclick="redraw(0)">Job Id</a>
+			</div>
+		</div>
+		 
+			<!-- <h1> Hearing Level by Job and Age</h1> -->
+		<!-- content for second chart -->
+		<!-- <h2>Overview</h2> -->
+	    <div class="wrapper">
+		  	<div id="chart2"></div>
+			<div id="slider3"> 
+		  		<h2>Age Range from <span id="chart2_age_min">20</span> to <span id="chart2_age_max">25</span></h2>
+				<div id="chart2_age_slider" class="slide3"></div>
+				<br>
+				<h2>Job ID Value: <span id="chart2_job_id">1</span></h2>
+		  		<div id="chart2_jobid_slider" class="slide3"></div>
+			</div>
+		  	<!-- <code>Type in your code here </code> -->
+	    </div>
+		<div style="clear:both"></div>
+		
+
+		
+	</div>
+		
+		<script src="http://d3js.org/d3.v3.min.js"></script>	 
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script> 
+
+		 <!-- first overview script -->
+		<script src="overview/barChart.js"></script>
+		<script src="overview/startEndSlider.js"></script>
+		<script src="overview/OverviewJobID.js"></script>
+		
+
+		<!-- chart 2 script  -->
+		
+		<script src="chart2/globalvariable.js"></script>
+		<script type="text/javascript" src="chart2/define2.js"></script>
+		<script type="text/javascript" src="chart2/chart2.js"></script>
+		<script src="chart2/d3.slider.js"></script>
+		
+	    <script>
+	    d3.select('#chart2_jobid_slider').call(d3.slider().axis(true).value(1).on("slide", function(evt, value) {
+	      d3.select('#chart2_job_id').text(value);
+	    }));
+	      d3.select('#chart2_age_slider').call(d3.slider().axis(true).value( [ 20, 30 ] ).on("slide", function(evt, value) {
+	        d3.select('#chart2_age_min').text(value[ 0 ]);
+	        d3.select('#chart2_age_max').text(value[ 1 ]);
+	      }));
+	    </script>
+		  
+	
+
+
+	</body>
+</html>
+
+
+

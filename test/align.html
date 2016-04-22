@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Navy</title>
+ 
+ <style type="text/css">
+
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hidden {
+     display:none;
+}
+
+ </style> 
+ 
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+</head>
+  <body>
+
+ <a href="#" onclick="toggler('myContent');">this is a test</a>
+<div id="myContent" class='hidden'>
+  <div>this is a test #1 </div>
+</div> 
+
+<script type="text/javascript">
+  
+  function toggler(divId) {
+    $("#" + divId).toggle();
+}
+</script>
+
+  </body>
+</html>

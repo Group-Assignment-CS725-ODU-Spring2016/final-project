@@ -1,0 +1,195 @@
+body {
+	width: 1200px;
+	height: 330px;
+  font: 12px verdana, helvetica, arial, sans-serif;
+}
+h2 {
+  font-size: 1.2em;
+
+  
+}
+#container {
+	float: left;
+	width: 600px;
+	height: 330px;
+	border: 2px solid gray;
+
+	margin: 55px 0 5px 0;
+	position: relative;
+}
+
+
+#slider3 {
+  width: 550px;
+ margin: 55px 55px 55px 55px;
+}
+
+#slider4 {
+  width: 550px;
+ margin: 0 0 0 55px;
+}
+
+.wrapper {
+	float: right;
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.wrapper > div {
+  margin: 10px 0;
+}
+
+
+
+#chart {
+	height: 400px;
+	padding-bottom: 20px;
+}
+
+
+#chart {
+    display: inline-block;
+ }
+  
+  #info {
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 50px;
+    margin-left: 10px;
+  }
+
+  .axis text {
+  	fill: #888;
+  }
+  .x.axis text {
+  	font-size: 88%;
+  }
+
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: #000;
+  }
+
+  .tick {
+    font: 10px sans-serif;
+  }
+
+/*
+  http://colorbrewer2.org
+  for the path - diverging - the second column
+  ['#c51b7d','#de77ae','#f1b6da','#fde0ef','#f7f7f7','#e6f5d0','#b8e186','#7fbc41','#4d9221']*/
+
+  path.left {
+    fill: none;
+    stroke: #f1b6da;
+  /*  stroke-width: 3px;*/
+  }
+
+  path.right {
+    fill: none;
+    stroke: #b8e186;
+/*    stroke-width: 3px;*/
+  }
+
+  path.dotted {
+    stroke-dasharray: 5,2.5;
+  }
+
+  circle.left {
+    fill: black;
+  }
+
+  circle.right {
+    fill: blue;
+  }
+
+  .label {
+    font-family: 'Helvetica Neue', Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    text-anchor: middle;
+  }
+
+
+  #top-jobs {
+    font-size: 10px;
+    margin-top: 20px;
+  }
+
+  #info-bottom {
+    font-size: 10px;
+    margin-left: 60px;
+  }
+
+  #top-levels, #top-hearings {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  #top-levels table, #top-jobs table, #top-hearings table {
+    border: 1px solid silver;
+  }
+
+  #top-levels table {
+    display: inline-table;
+    margin-right: 10px;
+  }
+
+  #top-levels table td, #top-jobs table td {
+    padding: 1px 6px 1px 6px;
+  }
+  
+  
+  .btn { 
+  	font-family: sans-serif;
+  	margin: 33px 0 0 2px;
+  	padding: 9px 12px;
+  	border: 1px solid gray;
+  	text-decoration: none;
+  	color: black;
+  	background: #CCC;
+  }
+  #btns {
+  	float: right;
+  	margin-right: 20px;
+  }
+  a.btn:hover { 
+  	text-decoration: none;
+  	color: black;
+  	background: #BBB;
+  }
+  #hover {
+  	position: absolute;
+  	top: 15px;
+  	right: 20px;
+  	width: 290px;
+  }
+  #hover h2 { 
+  	width: 90px; 
+  	float: left; 
+  	text-align: right;
+  }
+  #hover .key-value {
+  	margin-top: 12px;
+  	float:left;
+  	width: 100px;
+  	text-align: center;
+  }
+  #hover .value {
+  	color: #EE8C10; 
+  	font-size:125%;
+  }
+  #hover .key {
+  	font-size: 90%;
+  	color: #777;
+  }
+  
+  p {
+  	color: #777;
+  }
+  
+  .byline {
+  	margin:-10px 0 30px 0;
+  }

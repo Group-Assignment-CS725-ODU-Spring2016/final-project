@@ -3,6 +3,13 @@
 <head>
   <title>Navy</title>
   
+  <style>
+  .vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+  </style>
   
     <link href="css/bootstrap.css" rel="stylesheet">
     <!-- Custom styles for this template -->
@@ -10,11 +17,15 @@
 
 
   	<link rel="stylesheet" href="css/overview/overview.css" />
-    <link rel="stylesheet" href="css/detail/styledetail.css" />
-    <link rel="stylesheet" href="http://sujeetsr.github.io/d3.slider/stylesheets/d3.slider.css" />
+    
+    <!-- <link rel="stylesheet" href="css/detail/styledetail.css" /> -->
+    
+    <link rel="stylesheet" href="css/detail/d3.slider.css" />  
+  	<link rel="stylesheet" href="css/detail/style.css">
 	
 </head>
   <body>
+
 
     <div class="container">
 
@@ -43,43 +54,94 @@
       </div>
 	</div><!--  end of nav menu -->
 
-
-
 	<!-- First overview for job type -->
 
 	<div class="container-fluid">
-  	
+
+
+		<div class="row">
+       		<div class="col-lg-3">
+       		</div>
+       		<div class="col-lg-6">
+       		<br><br>
+       		<h2>Overview by Job Type</h2>
+       		</div>
+		
+  		</div>
        	<div class="row">
-       		<div class="col-lg-1"></div>
+       		<div class="col-lg-1">
+       			
+       			<div class="btn-group-vertical btn-group-md">
+					<button id="by_number_worker" class="btn btn-success">By Workers</button>
+       				<button id="by_job_id" class="btn btn-success">By Job ID</button>
+       			</div>
+       			
+       		</div>
+
+
+
 
          	<div class="col-lg-6" id="overview_job_id">
          		
         	</div>
 
+        	<div class="col-lg-1">
+	  		</div>
+
+	  		<br><br><br><br><br><br>
+        	<div class="col-lg-3  text-center" id="piechart">
+        		
+        	</div>
+
     	</div>
 	</div> <!-- end first overview job type -->
 	
-
 	<!-- first detail for job type -->
+	<div class="container-fluid">
+		<div class="row" id="divsecondchart">
+			<div class="col-lg-1">
+				<div class="btn-group-vertical btn-group-md">
+						<button id="hide_the_detail"  onClick=" $('#divsecondchart').hide();" class="btn btn-success">Hide Detail</button>
+	       				
+	       			</div>
 
-	<div class="row">
-		<div class="col-lg-1"></div>
-		<div class="col-lg-5">
+			</div>
+				
+				<div class="col-lg-6">
+				 	
+				 	<h2 class="text-center"> Average Hearing Level by Age of Job ID = <span id="dis_job_id"></span></h2>
+      				
+      				<div id="chart2"></div>
+      				<p>Age Range from <span id="chart2_age_min">20</span> to <span id="chart2_age_max">25</span></p>
+    				<div id="chart2_age_slider" class="slide3"></div>
 
-			<div id="chartseconddetail"></div> 
-	  		<div id="slider" style="margin-left: 120px; width: 800px"></div> 
-	  	</div>
-	  	<div class="col-lg-3">
-    		<div  id="inset"></div>			
+					</div>
+		  		
+		  		<div class="col-lg-1">
+		  		</div>
+
+		  		<br><br><br><br><br><br>
+		  		<div class="col-lg-3 text-center" id="piechartdetail">
+
+
+		  		
+		  		</div>
+			
 		</div>
-
 	</div> <!-- first detail for job type -->
 
-	<div> You are selected:  </div>
-	<div id="info">  </div>
+	<!-- <div> You are selected:  </div>
+	<div id="info">  </div> -->
 
+
+
+		<!-- bootstrap -->
+ 		<script src="js/jquery-2.2.3.min.js"></script>
+    	<script src="js/bootstrap.js"></script>
 
 		<!-- scripts for the first vis -->
+
+
 
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.13/d3.min.js"></script>		
 		<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
@@ -87,15 +149,27 @@
 
 		<!-- overview -->
 		<script src="js/overview/firstoverview.js"></script>
+		<script src="js/overview/piechart.js"></script>
 		
 		<!-- detail -->
-		<script type="text/javascript" src="js/detail/firstdetail.js"></script>
-		<script type="text/javascript" src="js/d3.slider.js"></script>
+		
+		<script type="text/javascript" src="js/detail/d3.slider.js"></script>
+		<script type="text/javascript" src="js/detail/chart2.js"></script>
+	  
 
-		<!-- bootstrap -->
- 		<script src="js/jquery-2.2.3.min.js"></script>
-    	<script src="js/bootstrap.js"></script>
-    	
+		
+
+    	 <script>
+  
+  
+		    d3.select('#chart2_age_slider').call(d3.slider().axis(true).value( [ 20, 30 ] ).on("slide", function(evt, value) {
+		      d3.select('#chart2_age_min').text(value[ 0 ]);
+		      d3.select('#chart2_age_max').text(value[ 1 ]);
+		    }));
+
+		    document.getElementById('divsecondchart').style.display = 'none';
+
+  </script>
 
   </body>
 </html>
