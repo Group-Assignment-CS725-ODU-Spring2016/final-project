@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		body {
+  			font: 10px sans-serif;
+		}
+
+
+	</style>
+
+</head>
+<body>
+<div id='heatmap'></div>
+<script src="http://d3js.org/d3.v3.min.js"></script>	 
+<script type="text/javascript">
+	
+	var data = [
+  
+];
+
+var next;
+var matrixsize = 100;
+
+for (var i = 0; i < matrixsize; i++) {           //Loop 25 times
+    for (var j = 0; j < matrixsize; j++) {           //Loop 25 times
+    
+
+    	next = function(r,c) {
+    	return {
+      
+	      score: Math.random(),
+	      row: r,
+	      col:c
+    		};
+    		}
+	//console.log(next(i,j));    		
+	data.push(next(i,j));
+    }
+
+    
+}
+
+
+
+
+
+//height of each row in the heatmap
+//width of each column in the heatmap
+var gridSize = 10,
+    h = gridSize,
+    w = gridSize,
+    rectPadding = 60;
+
+var colorLow = 'green', colorMed = 'yellow', colorHigh = 'red';
+
+var margin = {top: 20, right: 80, bottom: 30, left: 50},
+    width = 640 - margin.left - margin.right,
+    height = 380 - margin.top - margin.bottom;
+
+var colorScale = d3.scale.linear()
+     .domain([-1, 0, 1])
+     .range([colorLow, colorMed, colorHigh]);
+
+var svg = d3.select("#heatmap").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+var heatMap = svg.selectAll(".heatmap")
+    .data(data, function(d) { return d.col + ':' + d.row; })
+  .enter().append("svg:rect")
+    .attr("x", function(d) { return d.row * w; })
+    .attr("y", function(d) { return d.col * h; })
+    .attr("width", function(d) { return w; })
+    .attr("height", function(d) { return h; })
+    .style("fill", function(d) { return colorScale(d.score); });
+
+
+
+</script>
+
+</body>
+</html>
