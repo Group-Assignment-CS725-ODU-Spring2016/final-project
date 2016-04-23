@@ -393,5 +393,6 @@ function draw_chart_detail_worker (workerid) {
     // Create initial graph for 1st element
     createGraph(data[0])
     createInsetTotal(data, 0)
+	// end
   })
 }
