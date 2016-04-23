@@ -184,9 +184,17 @@ function load_first_overview(filename)
                     jobid = d.JobCodeNumber;
 
                     draw_heatmap(jobid);
+                    
+                    $("#heatmapchart").fadeIn(1000);
+                  //$("#divsecondchart").fadeIn(1000);
+                  
+                  //focus to divsecondchart
+                  //$('html, body').animate({scrollTop: $("#divsecondchart").offset().top}, 100);
 
-                    $("#divsecondchart").fadeIn(2000);
-
+                  //focus to the heatmap div
+                  
+                  
+                  
                     if (currentSelected)
                     {
                       if (currentD.JobCount<0)
@@ -209,6 +217,7 @@ function load_first_overview(filename)
 
                     PieChart(d.Male,d.Total-d.Male,d.Total,"#piechartdetail");
                     
+                    $('html, body').animate({scrollTop: $("#heatmapchart").offset().top}, 3000);
                   
                 })
               .attr("x", function(d,i) { return ovx(i); })
@@ -232,11 +241,12 @@ function load_first_overview(filename)
              context.append("path")
               .datum(data)
               .attr("class", "area")
+              .attr("transform", "translate(20,0)")
               .attr("d", area2);
 
           context.append("g")
               .attr("class", "x axis")
-              .attr("transform", "translate(0," + ovheight2 + ")")
+              .attr("transform", "translate(20," + (ovheight2) + ")")
               .call(ovxAxis2);
 
           context.append("g")
@@ -244,6 +254,7 @@ function load_first_overview(filename)
               .call(brush)
             .selectAll("rect")
               .attr("y", -6)
+              .attr("transform", "translate(20,0)")
               .attr("height", ovheight2 + 7);
 
         });

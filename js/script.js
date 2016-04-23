@@ -9,4 +9,6 @@ document.getElementById("footer").innerHTML =
         
                     $("#divsecondchart").hide();
     });
+
+    
 });
