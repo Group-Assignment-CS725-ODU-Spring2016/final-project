@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Navy</title>
+ 
+ <style type="text/css">
+
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hidden {
+     display:none;
+}
+
+ </style> 
+ 
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+</head>
+  <body>
+
+ <a href="#" onclick="toggler('myContent');">this is a test</a>
+<div id="myContent">
+  
+</div> 
+
+<script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.13/d3.min.js"></script>   
+
+<script type="text/javascript">
+  var vis = d3.select("#myContent").append("svg:svg")
+.attr("width", 50)
+.attr("height", 50);
+
+var yourGElement = vis.append("svg:g").attr("transform", "translate(0,0)");
+
+yourGElement.append("svg:title").text("This is overview by job id");
+ 
+</script>
+
+  </body>
+</html>

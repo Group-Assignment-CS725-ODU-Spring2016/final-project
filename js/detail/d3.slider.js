@@ -27,6 +27,8 @@
 return function module() {
   "use strict";
 
+
+
   // Public variables width default settings
   var min = 16,
       max = 100,
@@ -58,6 +60,10 @@ return function module() {
 		 //  min = 1;
 		 //  max = 1017;
 	  // }
+
+    
+
+    
 	  
     selection.each(function() {
 
@@ -231,20 +237,11 @@ return function module() {
 					draw_chart2(jobid,minage,maxage);
 					
 
+          //show age selected div
+          $("#divagerangeselection").fadeIn(1000);
 
-					
 				}
 				
-				//jobid selection
-				if (selection.attr('id')=='chart2_jobid_slider')
-				{
-
-					jobid = value; //new jobid
-					draw_chart2(jobid,minage,maxage);
-					
-                    
-				}
-
   	} 
 
     });
