@@ -21,7 +21,7 @@ var colorLow = 'green', colorMed = 'yellow', colorHigh = 'red';
 
 var margin = {top: 20, right: 80, bottom: 50, left: 160},
     hmwidth = 1200 - margin.left - margin.right,
-    hmheight = 400 - margin.top - margin.bottom;
+    hmheight = 560 - margin.top - margin.bottom;
 
 var hmy = d3.scale.linear().range([hmheight, 0]);
 var hmx = d3.scale.linear().range([ -100,hmwidth]);

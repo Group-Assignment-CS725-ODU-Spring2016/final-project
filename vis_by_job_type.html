@@ -28,7 +28,7 @@
     <!-- <link rel="stylesheet" href="css/detail/styledetail.css" /> -->
     
     <link rel="stylesheet" href="css/detail/d3.slider.css" />  
-  	<link rel="stylesheet" href="css/detail/style.css">
+  	<link rel="stylesheet" href="css/detail/styledetail.css">
 	
 </head>
   <body>
@@ -71,34 +71,40 @@
        		</div>
        		<div class="col-lg-6">
        		<br><br>
-       		<h3>Overview by Job Type</h3>
+       		<h3 class="text-danger">Overview by Job Type</h3>
        		</div>
 		
   		</div>
        	<div class="row">
+
+       		<div class="col-lg-1" >
+       		</div>
        		<div class="col-lg-1">
-       			
-       			<div class="btn-group-vertical btn-group-md">
+       				<p>Sort data:</p>
+       				<div class="btn-group-vertical btn-group-md">
 					<button id="by_number_worker" class="btn btn-success">By Workers</button>
        				<button id="by_job_id" class="btn btn-success">By Job ID</button>
        			</div>
        			
        		</div>
-
-
-
-
          	<div class="col-lg-6" id="overview_job_id">
          		
         	</div>
 
-        	<div class="col-lg-1">
-	  		</div>
+         
+	  		<div class="col-lg-3">
+		  		<div class="row text-center">
+	        		
+	        		<h4 class="text-danger"><span id="Overviewpiechart_title"></span>
+	        		</h4>
 
-	  		<br><br><br><br><br><br>
-        	<div class="col-lg-3  text-center" id="piechart">
-        		
-        	</div>
+	        	</div>
+		  		<div class="row text-center">
+	        		<div id="piechart">
+	        		
+	        		</div>
+	        	</div>
+	        </div>
 
     	</div>
 	</div> <!-- end first overview job type -->
@@ -106,10 +112,10 @@
 	<!-- first detail for job type -->
 	<div class="container-fluid">
 		<div class="row" id="divsecondchart">
+			<div class="col-lg-1" >
+       		</div>
 			<div class="col-lg-1">
-					
-
-	       			<div class="btn-group-vertical btn-group-md">
+					<div class="btn-group-vertical btn-group-md">
 					<button id="heatmapview" class="btn btn-success">Heatmap View</button>
        				<!-- <button id="chartview" class="btn btn-success">Chart View</button> -->
        				</div>
@@ -135,25 +141,20 @@
 		  	
 
 		  		<br><br><br><br><br><br>
+		  		
 		  		<div class="col-lg-3 text-center" id="piechartdetail">
-
 		  		</div>
+		  		<div class="col-lg-1 text-center" >
+	       		</div>
 
-		  			
-		  			<div class="col-lg-1 text-center" >
-
-						
-	       			</div>
-
-
-			
 		</div>
 	</div> <!-- first detail for job type -->
 
 	<!-- heatmap detail chart -->
 	<div class="container-fluid">
 		<div class="row" id="divheatmapchart">
-
+			<div class="col-lg-1" >
+       		</div>
 			<div class="col-lg-1">
 				<div class="btn-group-vertical btn-group-md">
 					
@@ -164,7 +165,7 @@
 				
 			<div class="col-lg-6">
 			 	
-			 	<h3 class="text-center"> Workers by Age and Hearing Level in jobID  (<span id="dis_job_id"></span>)</h3>
+			 	<h3 class="text-center text-danger"> Workers by Age and Hearing Level in jobID  (<span id="dis_job_id"></span>)</h3>
   				
   				<div id="heatmapchart"></div>
   				
@@ -174,9 +175,22 @@
 
 	</div> <!-- second detail chart -->
 
-	<div class="buttonBox" id="divhidedetail">
+	<div class="container-fluid">
+		<div class="row">
+
+			<div class="col-lg-1">
+				 
+<div class="buttonBox" id="divhidedetail">
 	<button id="hide_the_detail"    class="btn btn-warning">Hide Detail</button>
 	    			</div>
+			</div>
+				
+			 
+		</div>
+
+	</div> <!-- second detail chart -->
+
+	
 
 	<!-- <div> You are selected:  </div>
 	<div id="info">  </div> -->

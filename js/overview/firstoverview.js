@@ -128,14 +128,15 @@ function load_first_overview(filename)
                     PieChart(d.Male,d.Total-d.Male,d.Total,"#piechart");
 
                     var tiphtml = "<strong>Job Code:</strong> <span style='color:red'>" + d.JobCodeNumber + "</span>";
-
                     tiphtml = tiphtml + "<br><strong>Total Workers:</strong> <span style='color:red'>" + d.Total + "</span>";
-
                     tip.html(tiphtml);
-          
-                       tip.show();
+                    tip.show();
 
-                      d3.select(this).style("fill", "brown");
+                    //Title for first piechart
+                    var viewinfo = d3.selectAll("#Overviewpiechart_title");
+                    viewinfo.html("Gender in job code ("+d.JobCodeNumber+") "); 
+
+                    d3.select(this).style("fill", "brown");
                   })
                 .on("mouseout", function(d,i)
                   {

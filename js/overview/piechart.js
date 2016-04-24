@@ -19,7 +19,9 @@ function PieChart(male,female,total,divposition){
 
         //set color for the default piechart
         if (male==676197) 
-        {
+        {   
+            var viewinfo = d3.selectAll("#Overviewpiechart_title");
+            viewinfo.html("Overall by Gender");
             colorpc = ["#d73027","#4575b4"];
         }
         else
@@ -30,7 +32,9 @@ function PieChart(male,female,total,divposition){
               colorpc = ["#fc8d59","#91bfdb"];
             }
             else
-            {
+            {   
+                //Mouse hover data
+              
                colorpc = ["#fee090","#e0f3f8"];
             }
         }
