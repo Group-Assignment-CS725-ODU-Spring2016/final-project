@@ -163,6 +163,8 @@ text.append('text').text('Profound')
 * ==========================================================================
 */
 
+var color = d3.scale.category10()
+
 function draw_chart_detail_worker (workerid) {
   d3.json("http://www.cs.odu.edu/~hdo/InfoVis/navy/dataworkerid.php?workerid=" + workerid, function(err, data) {
     // Create step values for slider : array from 0 to data.length()-1
@@ -250,8 +252,10 @@ function draw_chart_detail_worker (workerid) {
 
     function createInsetTotal(data, idx) {
       totals = []
+	  dotInsetColors = []
       data.forEach(function(d) {
-          totals.push(d["TotalHearing"])
+          totals.push(+d["TotalHearing"])	// push = add array element, convert it to integer. 
+		  dotInsetColors.push(color(d["JobCodeNumber"]))
       })
 
       xInset.domain([0, data.length - 1])
@@ -285,6 +289,7 @@ function draw_chart_detail_worker (workerid) {
         .attr("cx", function (d, i) { return xInset(i) })
         .attr("cy", function (d) { return yInset(d) })
         .attr("r", 5)
+		.style("fill", function (d, i) {return dotInsetColors[i]})
         //.attr("class", cls)
     }
 
