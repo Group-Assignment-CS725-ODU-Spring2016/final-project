@@ -1,11 +1,11 @@
 
 
-// document.getElementById("footer").innerHTML =
-// "<p>&copy;  " + new Date().getFullYear() + " All rights reserved.</p>";
+ // document.getElementById("footer").innerHTML =
+ // "<p>&copy;  " + new Date().getFullYear() + " All rights reserved.</p>";
 
-
-
+//$("#footer").val("some value");
  
+ $('[id$=footer]').html("&copy;" + new Date().getFullYear() + " All rights reserved.");
 
 $(document).ready(function(){
     $("#heatmapview").click(function(){
