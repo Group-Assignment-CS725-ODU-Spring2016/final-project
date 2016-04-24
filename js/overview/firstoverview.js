@@ -181,7 +181,7 @@ function load_first_overview(filename)
                     $("#divheatmapchart").fadeIn(1000);
                     $("#divhidedetail").fadeIn(1000);
                     $("#divsecondchart").hide();
-                    divsecondchart
+                    
                     
                   $('html, body').animate({scrollTop: $("#heatmapchart").offset().top}, 3000);
                   
