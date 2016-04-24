@@ -3,8 +3,8 @@ var selected_worker_id = '';
 
 var focusGraph;
 
-var ovmargin = {top: 100, right: 10, bottom: 100, left: 40},
-    ovmargin2 = {top: 430, right: 10, bottom: 40, left: 40},
+var ovmargin = {top: 100, right: 10, bottom: 100, left: 90},
+    ovmargin2 = {top: 430, right: 10, bottom: 40, left: 90},
     ovwidth = 960 - ovmargin.left - ovmargin.right,
     ovheight = 500 - ovmargin.top - ovmargin.bottom,
     ovheight2 = 500 - ovmargin2.top - ovmargin2.bottom;
@@ -33,15 +33,24 @@ var svg = d3.select("#overview_worker_id").append("svg")
     
 
 
-var ovxAxis = d3.svg.axis().scale(ovx)
-  
-  .orient("bottom");
+
+var ovxAxis = d3.svg.axis().scale(ovx).orient("bottom");
 
 var  ovxAxis2 = d3.svg.axis().scale(ovx2)
     .orient("bottom");
   
 
 var ovyAxis = d3.svg.axis().scale(ovy).orient("left");
+
+svg.append("g")
+  //.attr("class", "y axis")
+  .call(ovyAxis)
+  .append("text")
+  .attr("transform", "rotate(-90)")
+  .attr("x", -ovheight+40)
+  .attr("y", 45)
+  .attr("class", "label")
+  .text("Total Hearing (dB)");
 
 
 
