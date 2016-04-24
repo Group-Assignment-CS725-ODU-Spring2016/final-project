@@ -23,7 +23,7 @@
 
       <!-- The justified navigation menu is meant for single line per list item.
            Multiple lines will require custom code not provided by Bootstrap. -->
-    <div class="masthead">
+    <div class="masthead" id ="divmasterhead">
         <h1 class="text-muted">Navy Hearing Conservation</h1>
         <nav>
 			<ul class="nav nav-justified">
@@ -52,6 +52,15 @@
 
 
 	<div class="container-fluid">
+
+		<div class="row">
+       		<div class="col-lg-1">
+       		</div>
+       		<div class="col-lg-8">
+	       		<br><br>
+	       		<h3 class="text-danger text-center">Overview of Workers by Birthyear</h3>
+       		</div>
+		</div>
   	
        	<div class="row">
        		<div class="col-lg-1" >
@@ -75,8 +84,34 @@
          	<div class="col-lg-6" id="overview_worker_id">
          	  	
          	</div>
+         	<div class="col-lg-1">
+         	</div>
          	<div class="col-lg-2">
-	            
+         		<br><br><br><br><br><br>
+	            <h3 class="text-danger">Summary</h3>
+				  <p>Some stats of workers with birth year (<span id="selectedbirthyear"></span>):</p>                                                            
+				  <table class="table">
+				    <thead>
+				      <tr>
+				        <th>Stat</th>
+				        <th>Information</th>
+				      </tr>
+				    </thead>
+				    <tbody>
+				      <tr class="info">
+				        <td>Total Workers</td>
+				        <td><span id="totalworkerbybirthyear"></span></td>
+				      </tr>
+				     <tr >
+				        <td>Max Total Hearing</td>
+				        <td><span id="maxtotalhearing"></span></td>
+				      </tr>
+				      <tr class="info">
+				        <td>Min Total Hearing</td>
+				        <td><span id="mintotalhearing"></span></td>
+				      </tr>
+				    </tbody>
+				   </table>
               	
 			</div>
          		
@@ -87,41 +122,47 @@
 
 	<!-- second detail for worker -->
 
-	<div class="row">
+		<div class="row">
+       		<div class="col-lg-3">
+       		</div>
+       		<div class="col-lg-6">
+	       		<br><br>
+	       		
+       		</div>
+		</div>
 
-		<div class="container">
-			<div class = "row">
-				<div class = "col-md-9">
-					<div id = "chartseconddetail"></div>
-					<div id = "slider"></div>
+	
+
+		<div class="container-fluid">
+			<div class = "row" id="divseconddetailtitle">
+				<div class = "col-md-2">
+				</div>
+				<div class = "col-md-6">
+					<h3 class="text-danger text-center">Overview by Job Type</h3><br>
+				</div>
+				<div class = "col-md-1">
 				</div>
 				<div class = "col-md-3">
-					<div id = "inset"></div>
+					<h3 class="text-danger">Changing of hearing level</h3><br>
+				</div>
+			</div>
+			<div class = "row">
+				<div class = "col-md-2">
+				</div>
+				<div class = "col-md-6">
+					<div id = "chartseconddetail"></div>
+					<div id="slider" style="margin-left: 120px; width: 800px"></div> 
+
+				</div>
+				<div class = "col-md-1">
+				</div>
+				<div class = "col-md-3">
+
+					<div id ="inset"></div>
 				</div>
 			</div>
 
-
-		<div class="col-lg-1" >
-       	
-       	</div>
-		<div class="col-lg-1">
-			
-			
-		</div>
-		<div class="col-lg-5">
-
-			<div id="chartseconddetail"></div> 
-	  		<div id="slider" style="margin-left: 120px; width: 800px"></div> 
-	  	</div>
-	  	<div class="col-lg-1">
-    		
-		</div>
-
-	  	<div class="col-lg-3">
-    		<div  id="inset"></div>			
-
-		</div>
-
+		
 	</div><!-- end of second detail for worker vis -->
 
 	<!-- detail button -->
@@ -161,7 +202,18 @@
 		- Title of charts -->
 		<script type="text/javascript" src="js/script.js"></script>	
 		
-    	
+		<script>
+  				// hide second detail when start
+  				$('#divhidedetail').hide();
+  				$('#chartseconddetail').hide();
+				$('#inset').hide();
+				$('#slider').hide();
+				document.getElementById('divseconddetailtitle').style.display = 'none';
+				
+
+		
+  		</script>
+    <div id="info" ></div>
 	
   </body>
 </html>

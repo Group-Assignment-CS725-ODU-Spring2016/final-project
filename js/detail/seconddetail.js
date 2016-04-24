@@ -33,8 +33,8 @@ $(window).resize(function() {
   width = rect.width - margin.left - margin.right
   insetWidth = insetRect.width - margin.left - margin.right
   
-  currentWorker = d3.select('#info').text()
-  currentSlider = sliderValue
+  var currentWorker = d3.select('#info').text()
+  var currentSlider = sliderValue
   
   draw_chart_detail_worker(currentWorker)
   d3slider.value(currentSlider)

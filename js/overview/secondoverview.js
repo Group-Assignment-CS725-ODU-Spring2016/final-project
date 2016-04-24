@@ -14,9 +14,7 @@ function selected_year_chart(birthyear)
 {
 
 d3.select("#overview_worker_id").selectAll("*").remove();
-
-
-
+    
 var ovx = d3.scale.linear().range([0, ovwidth]);
 
 var ovx2 = d3.scale.linear().range([0, ovwidth]);
@@ -108,6 +106,10 @@ svg.call(tip);
     .y(ovy)
     .scaleExtent([1, 10])
     .on("zoom", zoomed);
+
+    
+    
+    
      
       //x,y for focus chart
       //x2,y2 for context chart
@@ -116,6 +118,13 @@ svg.call(tip);
 
     	var maxy = d3.max(data, function(d) { return +d.totalhearing; });
       var miny = d3.min(data, function(d) { return +d.totalhearing; });
+
+      //totalworkerbybirthyear
+      
+      d3.selectAll("#selectedbirthyear").html(birthyear);
+      d3.selectAll("#totalworkerbybirthyear").html(data.length);
+      d3.selectAll("#maxtotalhearing").html(maxy);
+      d3.selectAll("#mintotalhearing").html(miny);
 
     	ovy.domain([miny, maxy]);
 
@@ -141,7 +150,9 @@ svg.call(tip);
           .enter().append("rect")
           .on("mouseover", function(d,i)
               {
-                tip.html("<strong>Worker ID:</strong> <span style='color:red'>" + d.sixplaceid + "</span>");
+                  var htmlinfo = "<strong>Worker ID:</strong> <span style='color:red'>" + d.sixplaceid + "</span>";
+                  htmlinfo = htmlinfo + "<br>" + "<strong>Total Hearing:</strong> <span style='color:red'>" + d.totalhearing + "</span>";
+                  tip.html(htmlinfo);
                   selected_worker_id = d.sixplaceid;
                    tip.show();
 
@@ -188,6 +199,16 @@ svg.call(tip);
                   
                 }
 
+                
+
+                //chartseconddetail
+                $("#chartseconddetail").fadeIn(200);
+                $("#inset").fadeIn(200);
+                $("#slider").fadeIn(200);
+                $("#overview").fadeIn(200);
+                $("#divhidedetail").fadeIn(200);
+                document.getElementById('divseconddetailtitle').style.display = '';
+
                 d3.select(this).style("fill", "magenta");
 
                 currentItem = i;
@@ -195,9 +216,11 @@ svg.call(tip);
                 currentSelected = this;
 
                 //print info
+
                 var viewinfo = d3.selectAll("#info");
                 viewinfo.html(d.sixplaceid);
-                d3.selectAll("#info").html = "aaa";
+                document.getElementById('info').style.display = 'none';
+                //d3.selectAll("#info").html = "aaa";
 
 
                 //d3.select("#chartseconddetail").remove();
@@ -261,11 +284,20 @@ svg.call(tip);
    
     var select = d3.select("#dropdown_birthyear")
             .append("select").attr("class","form-control");
+    
     select
       .on("change", function(d) {
         var value = d3.select(this).property("value");
         selected_year_chart(value);
+
+        $('#chartseconddetail').hide();
+        $('#inset').hide();
+        $('#slider').hide();
+        $('#divhidedetail').hide();
+        document.getElementById('divseconddetailtitle').style.display = 'none';
+
       });
+
 
     select.selectAll("option")
       .data(data)
@@ -284,4 +316,5 @@ d3.select("button").on("click", reset);
         }
 
 //initial chart
+//var value = d3.select("dropdown_birthyear").property("value");
 selected_year_chart(1928);
