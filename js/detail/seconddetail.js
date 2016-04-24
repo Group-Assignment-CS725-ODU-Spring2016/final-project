@@ -244,6 +244,7 @@ function draw_chart_detail_worker (workerid) {
       .attr("x", insetWidth/2)
       .attr("y", 35)
       .attr("class", "label")
+      //.ticks(4)
       .text("Number of Test");
 
     var gyAxisInset = inset.append("g")

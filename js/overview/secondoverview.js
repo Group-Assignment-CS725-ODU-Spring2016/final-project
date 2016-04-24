@@ -283,7 +283,9 @@ svg.call(tip);
 
    
     var select = d3.select("#dropdown_birthyear")
-            .append("select").attr("class","form-control");
+            .append("select")
+            .attr("class","form-control")
+            .attr("id","dropdownlist");
     
     select
       .on("change", function(d) {
@@ -303,16 +305,19 @@ svg.call(tip);
       .data(data)
       .enter()
         .append("option")
-        .append("class","form-control")
+        //.append("class","form-control")
         //.attr("class","dropdown-menu")
         .attr("value", function (d) { return d.birthyear; })
         .text(function (d) { return d.birthyear; });
+
+    $('#dropdownlist').val('1928'); //value of your default option
   });
 
 d3.select("button").on("click", reset);
 
         function reset() {
           selected_year_chart(1928);
+          $('#dropdownlist').val('1928'); //value of your default option
         }
 
 //initial chart

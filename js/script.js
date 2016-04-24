@@ -1,10 +1,11 @@
-
-
+ 
  // footer content 
  $('[id$=footer]').html("&copy;" + new Date().getFullYear() + " All rights reserved.");
 
 $(document).ready(function(){
 
+	
+	
 	//first visualization
     $("#heatmapview").click(function(){
     	//console.log("vao day");
