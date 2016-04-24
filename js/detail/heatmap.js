@@ -3,7 +3,7 @@
 function draw_heatmap(jobid)
 {
 
-svg.selectAll("svg").remove();
+d3.select("#heatmapchart").selectAll("*").remove();
 
 var heatmapdata = [];
 
@@ -19,9 +19,9 @@ var gridSize = 5,
 
 var colorLow = 'green', colorMed = 'yellow', colorHigh = 'red';
 
-var margin = {top: 20, right: 80, bottom: 50, left: 150},
+var margin = {top: 20, right: 80, bottom: 50, left: 160},
     hmwidth = 1200 - margin.left - margin.right,
-    hmheight = 400 - margin.top - margin.bottom;
+    hmheight = 560 - margin.top - margin.bottom;
 
 var hmy = d3.scale.linear().range([hmheight, 0]);
 var hmx = d3.scale.linear().range([ -100,hmwidth]);
@@ -48,6 +48,8 @@ var hmsvg = d3.select("#heatmapchart").append("svg")
     .attr("height", hmheight + margin.top + margin.bottom)
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
 
 var tip = d3.tip()
           .attr('class', 'd3-tip')

@@ -1,8 +1,5 @@
+
 function PieChart(male,female,total,divposition){
-
-    //var divposition = "#";
-
-
 
        	d3.selectAll(divposition).html("");
 		var round = Math.round;
@@ -20,17 +17,28 @@ function PieChart(male,female,total,divposition){
 			 r = 100;                            //radius
 		
 
-        var color;     //builtin range of colors
-	   
-
+        //set color for the default piechart
+        if (male==676197) 
+        {   
+            var viewinfo = d3.selectAll("#Overviewpiechart_title");
+            viewinfo.html("Overall by Gender");
+            colorpc = ["#d73027","#4575b4"];
+        }
+        else
+        {
+        //Set color for the chart detail
         if (divposition=="#piechartdetail")
-    {
-       color = d3.scale.category20();     //builtin range of colors
-    }
-    else
-    {
-        color = d3.scale.category10();     //builtin range of colors
-    }
+            {
+              colorpc = ["#fc8d59","#91bfdb"];
+            }
+            else
+            {   
+                //Mouse hover data
+              
+               colorpc = ["#fee090","#e0f3f8"];
+            }
+        }
+
 
 
     data = [{"label":""+" "+malepercent+'%', "value":male}, 
@@ -62,7 +70,7 @@ function PieChart(male,female,total,divposition){
                 .attr("class", "slice");    //allow us to style things in the slices (like text)
        // arcs.transition().duration(750).attrTween("d",arcTween);
         arcs.append("svg:path")
-                .attr("fill", function(d, i) { return color(i); } ) //set the color for each slice to be chosen from the color function defined above
+                .attr("fill", function(d, i) { return colorpc[i]; } ) //set the color for each slice to be chosen from the color function defined above
                 .attr("d", arc);                                    //this creates the actual SVG path using the associated data (pie) with the arc drawing function
 		
 			
@@ -75,7 +83,7 @@ function PieChart(male,female,total,divposition){
                 return "translate(" + arc.centroid(d) + ")";        //this gives us a pair of coordinates like [50, 50]
             })
             .attr("text-anchor", "middle")                          //center the text on it's origin
-			.style("fill",function(d, i) { return color(i); })
+			.style("fill",function(d, i) { return colorpc[i]; })
 			.style("font", "bold 12px Arial")
             .text(function(d, i) { return gender[i]; });  
 				

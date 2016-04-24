@@ -248,25 +248,22 @@ svg.call(tip);
  d3.csv("js/overview/birthyear.csv", function(error, data) {
 
   //add select to dropdown list to main page
-    var select = d3.select("#dropdown_birthyear")
-            .append("select");
 
+   
+    var select = d3.select("#dropdown_birthyear")
+            .append("select").attr("class","form-control");
     select
       .on("change", function(d) {
-
         var value = d3.select(this).property("value");
-        
         selected_year_chart(value);
-
-        
- 
-
       });
 
     select.selectAll("option")
       .data(data)
       .enter()
         .append("option")
+        .append("class","form-control")
+        //.attr("class","dropdown-menu")
         .attr("value", function (d) { return d.birthyear; })
         .text(function (d) { return d.birthyear; });
   });

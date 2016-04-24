@@ -6,9 +6,6 @@ var color = ['#E3F2FD','#BBDEFB','#90CAF9','#64B5F6','#42A5F5','#2196F3','#99340
           width = 920 - margin.left - margin.right,
           height = 500 - margin.top - margin.bottom;
 
-
-
-
 	var numberofdatatokeep = 10;
 	var historydata = {};
 
@@ -37,7 +34,7 @@ var color = ['#E3F2FD','#BBDEFB','#90CAF9','#64B5F6','#42A5F5','#2196F3','#99340
   .orient("left");
 
   svg.append("g")
-    .attr("class", "x axis")
+    .attr("class", "y axis")
     .call(xAxis)
     .append("text")
     .attr("x", width/2)
@@ -160,24 +157,11 @@ function draw_chart2(jobid,minage,maxage)
 
     // Add line
     svg.selectAll("path").remove();
+    svg.selectAll("circle").remove();
 
     var addLine = function (data, cls) {
       
-	 //  //save history data
-		// for (var i=1;i<=numberofdatatokeep;i++)
-		// {
-		// 	if (historydata[i] === undefined) {
-		// 	}
-		// 	else
-		// 	{
-		// 		historydata[i-1] = historydata[i];
-		// 		//console.log(i-1,historydata[i-1]);
-		// 	}
-		// }
-		
-		// historydata[numberofdatatokeep-1] = data;
 	 
-	  
 	  // plot the lines
 		
     var line = d3.svg.line()
@@ -192,20 +176,30 @@ function draw_chart2(jobid,minage,maxage)
 		.attr("stroke-width", 2)
 		.attr("d", line);
 		
-	var totalLength = lineGraph.node().getTotalLength();
-
-	lineGraph
-		.attr("stroke-dasharray", totalLength + " " + totalLength)
-		.attr("stroke-dashoffset", totalLength)
-		.transition()
-		.duration(500)
-		.ease("linear")
-		.attr("stroke-dashoffset", 0);
+	 
 
     };
 
     addLine(data.left, "left");
     addLine(data.right, "right");
+
+      var addCircle = function (datax, datay, sel, cls, label) {
+        svg.selectAll(sel)
+          .data(datay)
+          .enter()
+          .append("circle")
+          .attr("cx", function (d, i) { return x(datax[i]) })
+          .attr("cy", function (d) { return y(d) })
+          .attr("r", 5)
+          .attr("class", cls)
+          .insert("title", "circle").text(function (d, i) {
+            return label + " Ear: (" + datax[i] + ", " + 
+              d + ")";
+        });
+      }
+
+      addCircle(data.left.x, data.left.y, "circle.left", "left", "Left");
+      addCircle(data.right.x, data.right.y, "circle.right", "right", "Right");
 
   }
   

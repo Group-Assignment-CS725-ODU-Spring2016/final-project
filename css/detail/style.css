@@ -32,17 +32,7 @@
   for the path - diverging - the second column
   ['#c51b7d','#de77ae','#f1b6da','#fde0ef','#f7f7f7','#e6f5d0','#b8e186','#7fbc41','#4d9221']*/
 
-  path.left {
-    fill: none;
-    stroke: #d95f02;
-  /*  stroke-width: 3px;*/
-  }
 
-  path.right {
-    fill: none;
-    stroke: #1b9e77;
-/*    stroke-width: 3px;*/
-  }
 
   path.dotted {
     stroke-dasharray: 5,2.5;

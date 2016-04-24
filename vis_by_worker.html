@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="css/overview/overview.css" />
     <link rel="stylesheet" href="css/detail/styledetail.css" />
     
-    
+      
 	
 </head>
   <body>
@@ -54,13 +54,23 @@
 	<div class="container-fluid">
   	
        	<div class="row">
+       		<div class="col-lg-1" >
+       		</div>
 
        		<!-- dropdown list on the left to select the year -->
        		<div class="col-lg-1" >
-       			<a id="dropdown_birthyear"> </a>
-       			<button id="Reset">Reset</button>
+       		<br><br><br><br><br>
 
+       			<p>Select year of birth:</p>
+       			<a id="dropdown_birthyear"> </a>
+       			<div class="btn-group-vertical btn-group-md">
+       			<button id="Reset" class="btn btn-success">Reset</button>
+       				
+       			</div>
        		</div>
+
+
+
 
          	<div class="col-lg-6" id="overview_worker_id">
          	  	
@@ -78,6 +88,7 @@
 	<!-- second detail for worker -->
 
 	<div class="row">
+<<<<<<< HEAD
 		<div class="container">
 			<div class = "row">
 				<div class = "col-md-9">
@@ -88,6 +99,27 @@
 					<div id = "inset"></div>
 				</div>
 			</div>
+=======
+
+		<div class="col-lg-1" >
+       	
+       	</div>
+		<div class="col-lg-1">
+			
+			
+		</div>
+		<div class="col-lg-5">
+
+			<div id="chartseconddetail"></div> 
+	  		<div id="slider" style="margin-left: 120px; width: 800px"></div> 
+	  	</div>
+	  	<div class="col-lg-1">
+    		
+		</div>
+
+	  	<div class="col-lg-3">
+    		<div  id="inset"></div>			
+>>>>>>> origin/gh-pages
 		</div>
 
 	</div><!-- end of second detail for worker vis -->
@@ -110,6 +142,10 @@
 		
 		<!-- detail -->
 		<script type="text/javascript" src="js/detail/seconddetail.js"></script>
+
+		<!-- any kind of general code can put here 
+		- Title of charts -->
+		<script type="text/javascript" src="js/script.js"></script>	
 		
     	
 <div> You are selected:  </div>

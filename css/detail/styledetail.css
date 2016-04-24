@@ -10,16 +10,17 @@
 
   path.left {
     fill: none;
-    stroke: black;
-    stroke-width: 1.5px;
+    stroke: #d95f02; /*updated by hung*/
+  /*  stroke-width: 3px;*/
   }
 
   path.right {
     fill: none;
-    stroke: blue;
-    stroke-width: 1.5px;
+    stroke: #4daf4a; /*updated by hung*/
+/*    stroke-width: 3px;*/
   }
 
+ 
   path.dotted {
     stroke-dasharray: 5,2.5;
   }
@@ -31,11 +32,11 @@
   }
 
   circle.left {
-    fill: black;
+    fill: #d95f02; /*updated by hung*/
   }
 
   circle.right {
-    fill: blue;
+    fill: #4daf4a; /*updated by hung*/
   }
 
   .label {

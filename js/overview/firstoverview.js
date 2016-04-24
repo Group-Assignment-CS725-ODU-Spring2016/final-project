@@ -17,6 +17,7 @@ var ovmargin = {top: 10, right: 10, bottom: 100, left: 60},
 
 function load_first_overview(filename)
   {
+        //remove the old content
         d3.select("#overview_job_id").selectAll("*").remove();
 
         var ovx = d3.scale.linear().range([0, ovwidth]);
@@ -33,7 +34,6 @@ function load_first_overview(filename)
         var  ovxAxis2 = d3.svg.axis().scale(ovx2)
             .orient("bottom");
         	
-
         var ovyAxis = d3.svg.axis().scale(ovy).orient("left");
 
         var brush = d3.svg.brush()
@@ -46,22 +46,19 @@ function load_first_overview(filename)
             .y0(ovheight2)
             .y1(function(d) { return ovy2(d.JobCount); });
 
-
-
         var svg = d3.select("#overview_job_id").append("svg")
             .attr("width", ovwidth + ovmargin.left + ovmargin.right)
             .attr("height", ovheight + ovmargin.top + ovmargin.bottom);
 
 
-        svg.append("g")
-     
-    
-    .append("text")
-    .attr("transform", "rotate(-90)")
-    .attr("x", -(ovheight/2))
-    .attr("y", 10)
-    .attr("class", "label")
-    .text("Number of Workers");
+
+          svg.append("g")
+          .append("text")
+          .attr("transform", "rotate(-90)")
+          .attr("x", -(ovheight/2))
+          .attr("y", 10)
+          .attr("class", "label")
+          .text("Number of Workers");
 
          var zoom = d3.behavior.zoom()
             .x(ovx)
@@ -102,10 +99,6 @@ function load_first_overview(filename)
           //x,y for focus chart
           //x2,y2 for context chart
           //Define domain for x,y,x2,y2  
-
-         
-          
-          
           ovx.domain(d3.extent(data.map(function(d,i) { return i; })));
 
         	maxy = d3.max(data, function(d) { return +d.JobCount; });
@@ -132,19 +125,18 @@ function load_first_overview(filename)
               .enter().append("rect")
               .on("mouseover", function(d,i)
                   {
-                    
-                   
                     PieChart(d.Male,d.Total-d.Male,d.Total,"#piechart");
 
                     var tiphtml = "<strong>Job Code:</strong> <span style='color:red'>" + d.JobCodeNumber + "</span>";
-
                     tiphtml = tiphtml + "<br><strong>Total Workers:</strong> <span style='color:red'>" + d.Total + "</span>";
-
                     tip.html(tiphtml);
-          
-                       tip.show();
+                    tip.show();
 
-                      d3.select(this).style("fill", "brown");
+                    //Title for first piechart
+                    var viewinfo = d3.selectAll("#Overviewpiechart_title");
+                    viewinfo.html("Gender in job code ("+d.JobCodeNumber+") "); 
+
+                    d3.select(this).style("fill", "brown");
                   })
                 .on("mouseout", function(d,i)
                   {
@@ -184,9 +176,19 @@ function load_first_overview(filename)
                     jobid = d.JobCodeNumber;
 
                     draw_heatmap(jobid);
+                    
+                    //When user click only show heatmap and hide button                   
+                    $("#divheatmapchart").fadeIn(1000);
+                    $("#divhidedetail").fadeIn(1000);
+                    $("#divsecondchart").hide();
+                    divsecondchart
+                    
+                  $('html, body').animate({scrollTop: $("#heatmapchart").offset().top}, 3000);
+                  
+                  //focus to divsecondchart
+                  //$('html, body').animate({scrollTop: $("#divsecondchart").offset().top}, 100);
 
-                    $("#divsecondchart").fadeIn(2000);
-
+                  //focus to the heatmap div
                     if (currentSelected)
                     {
                       if (currentD.JobCount<0)
@@ -208,6 +210,7 @@ function load_first_overview(filename)
                     // d3.selectAll("#info").html = "aaa";
 
                     PieChart(d.Male,d.Total-d.Male,d.Total,"#piechartdetail");
+                    
                     
                   
                 })
@@ -232,11 +235,12 @@ function load_first_overview(filename)
              context.append("path")
               .datum(data)
               .attr("class", "area")
+              .attr("transform", "translate(20,0)")
               .attr("d", area2);
 
           context.append("g")
               .attr("class", "x axis")
-              .attr("transform", "translate(0," + ovheight2 + ")")
+              .attr("transform", "translate(20," + (ovheight2) + ")")
               .call(ovxAxis2);
 
           context.append("g")
@@ -244,6 +248,7 @@ function load_first_overview(filename)
               .call(brush)
             .selectAll("rect")
               .attr("y", -6)
+              .attr("transform", "translate(20,0)")
               .attr("height", ovheight2 + 7);
 
         });
