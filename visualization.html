@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Navy</title>
+  
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="css/justified-nav.css" rel="stylesheet">
+  	<link rel="stylesheet" href="css/d3.slider.css" />  
+  	<link rel="stylesheet" href="css/style.css">
+	 <link rel="stylesheet" href="http://sujeetsr.github.io/d3.slider/stylesheets/d3.slider.css" />
+
+</head>
+
+  <body>
+
+    <div class="container">
+
+      <!-- The justified navigation menu is meant for single line per list item.
+           Multiple lines will require custom code not provided by Bootstrap. -->
+      <div class="masthead">
+        <h1 class="text-muted">Navy Hearing Conservation</h1>
+        <nav>
+          <ul class="nav nav-justified">
+            <li ><a href="index.html">Home</a></li>
+            <li class="active"><a href="visualization.html">Visualizations</a></li>
+            <li><a href="resource.html">Resource</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+	  <!-- Example row of columns -->
+      <div class="row">
+        
+        <div class="col-lg-4">
+          <h2>Tasks Overview</h2>
+        </div>    
+		
+		<!-- First-task: visualization by jobtype -->
+		<div class="col-lg-12">
+				<h2>By Job Type</h2>
+			 <p><a class="btn btn-primary" data-toggle="collapse" data-target="#div_job_type" role="button">View details &raquo;</a></p>
+	 	    <div class="collapse" id="div_job_type" >
+		      <p>In this task we analyze the data by job type of workers in the program. User can select the workers by the job id  </p>
+			<!-- first overview -->
+				<div class="col-lg-8">
+					<div id="overviewjobid"></div>
+					<div id="btns">
+						Sort by:
+						<a class="btn btn-primary" onclick="redraw(1)">Job Count</a>
+						<a class="btn btn-primary" onclick="redraw(0)">Job Id</a>
+					</div>
+				</div>
+				<div class="col-lg-4" id="hover_job_type"></div>
+			<!-- end of first overview -->
+	        </div>
+		</div>
+		<!-- end of first task -->
+		
+		<!-- Second task: visualization by worker -->
+		<div class="col-lg-12">
+			<h2>By Worker</h2>
+		 	<p><a class="btn btn-primary" data-toggle="collapse" data-target="#div_worker_detail" role="button">View details &raquo;</a></p>
+			
+			<!-- Chart 4: detail hearing level of each worker -->
+	 		<div class="collapse" id="div_worker_detail">
+          	  <p>In this task we analyze the data by workers during the time he served </p>
+      		<!-- second overview -->
+				<div class="col-lg-8">
+					<div id="dropdown_birthyear">
+						 
+					</div>
+					<div id="overviewworker"></div>
+					<div id="btns">
+						Sort by:
+						<a class="btn btn-primary" onclick="redrawworker(1)">Hearing</a>
+						<a class="btn btn-primary" onclick="redrawworker(0)">WorkerID</a>
+					</div>
+				</div>
+				<div class="col-lg-4" id="hover_worker"></div>
+			<!-- end of first overview -->
+			
+			    <div id="chart_worker_detail"></div>
+				<div id="slider_worker_detail"></div>
+			</div> <!-- end chart 4 -->
+			
+			
+
+		    
+	  </div>
+	  <!-- end of second task -->
+
+      </div>
+
+
+      <!-- Site footer -->
+      <footer class="footer" id="footer">
+      </footer>
+
+    </div> <!-- /container -->
+
+    <script src="js/jquery-2.2.3.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/script.js"></script>
+	
+	<!-- D3 javascripts -->
+	<script src="http://d3js.org/d3.v3.min.js"></script>	 
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script> 
+
+	 <!-- first overview script -->
+	<script src="js/overview/barChart.js"></script>
+	<script src="js/overview/startEndSlider.js"></script>
+	<script src="js/overview/OverviewJobID.js"></script>
+	
+
+	<!-- second overview script -->
+<script src="js/secondoverview/barChartworker.js"></script>
+		<script src="js/secondoverview/startEndSliderworker.js"></script>
+<script src="js/secondoverview/Overviewworker.js"></script>
+	
+	<!-- chart 4 scripts - worker detail -->
+    <script type="text/javascript" src="http://sujeetsr.github.io/d3.slider/javascripts/d3.slider.js"></script>
+	 <script type="text/javascript" src="js/individual/worker_detail_hearing.js"></script>
+	
+	 
+	
+  </body>
+</html>

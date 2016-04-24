@@ -1,3 +1,7 @@
+var tooltip = d3.select("body").append("div")	
+       .attr("class", "tooltip")	
+       .style("opacity", 0);
+	   
 var rect = d3.select('#chartseconddetail')
   .node().getBoundingClientRect()
 var insetRect = d3.select('#inset')
@@ -166,6 +170,7 @@ text.append('text').text('Profound')
 var color = d3.scale.category10()
 
 function draw_chart_detail_worker (workerid) {
+	d3.select('#worker').text(workerid)
   d3.json("http://www.cs.odu.edu/~hdo/InfoVis/navy/dataworkerid.php?workerid=" + workerid, function(err, data) {
     // Create step values for slider : array from 0 to data.length()-1
     var stepValues = []
@@ -213,6 +218,7 @@ function draw_chart_detail_worker (workerid) {
 
     // Render the slider in the div
     var slider = d3.select('#slider').call(d3slider);
+	d3.selectAll('.d3slider-axis .tick text').attr('transform', 'translate(-10,12)rotate(-45)')
 
      //d3.select('#slider11').call(d3.slider()
 
@@ -238,7 +244,7 @@ function draw_chart_detail_worker (workerid) {
       .attr("x", insetWidth/2)
       .attr("y", 35)
       .attr("class", "label")
-      .text("Date");
+      .text("Number of Test");
 
     var gyAxisInset = inset.append("g")
       .attr("class", "y axis");
@@ -290,6 +296,48 @@ function draw_chart_detail_worker (workerid) {
         .attr("cy", function (d) { return yInset(d) })
         .attr("r", 5)
 		.style("fill", function (d, i) {return dotInsetColors[i]})
+		.on("mouseover", function(d, i) {
+			tooltip
+			.style("opacity", .9)
+			.html("Job ID : " + data[i]['JobCodeNumber'])
+			.style("left", (d3.event.pageX) + "px")
+			.style("top", (d3.event.pageY - 28) + "px");
+		})
+		.on("mouseout", function(d, i) {
+			tooltip.transition()
+			.duration(500)
+			.style("opacity", 0)
+		}) 
+		
+		/*
+			
+.on("mouseover", function(d, i) {
+           tooltip
+           .style("opacity", .9)
+           .html("Job ID : " + data[i]['JobCodeNumber'])
+           .style("left", (d3.event.pageX) + "px")	
+           .style("top", (d3.event.pageY - 28) + "px");
+         })
+         .on("mouseout", function(d, i) {
+           tooltip.transition()	
+           .duration(500)	
+           .style("opacity", 0);
+         })
+		*/
+		//console.log(data)
+		
+		.on("mouseover", function(d, i) {
+           tooltip
+           .style("opacity", .9)
+           .html("Job ID : " + data[i]['JobCodeNumber'])
+           .style("left", (d3.event.pageX) + "px")	
+           .style("top", (d3.event.pageY - 28) + "px");
+         })
+         .on("mouseout", function(d, i) {
+           tooltip.transition()	
+           .duration(500)	
+           .style("opacity", 0);
+         })
         //.attr("class", cls)
     }
 

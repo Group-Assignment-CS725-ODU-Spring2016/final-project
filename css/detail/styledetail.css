@@ -10,13 +10,13 @@
 
   path.left {
     fill: none;
-    stroke: #d95f02; /*updated by hung*/
+    stroke: #FC0200; /*updated by hung*/
   /*  stroke-width: 3px;*/
   }
 
   path.right {
     fill: none;
-    stroke: #4daf4a; /*updated by hung*/
+    stroke: #e6ac00; /*updated by hung*/
 /*    stroke-width: 3px;*/
   }
 
@@ -31,12 +31,13 @@
     stroke-width: 1.5px;
   }
 
+  /* yellow and red stand out against blue: https://cios233.community.uaf.edu/design-theory-lectures/color-theory/*/
   circle.left {
-    fill: #d95f02; /*updated by hung*/
+    fill: #FA0201; 
   }
 
   circle.right {
-    fill: #4daf4a; /*updated by hung*/
+    fill: #FCFF04; 
   }
 
   .label {
@@ -74,3 +75,13 @@
   #top-levels table td, #top-jobs table td {
     padding: 1px 6px 1px 6px;
   }
+  
+  div.tooltip {	
+       font : 12px "Helvetica Neue",arial,freesans,clean,sans-serif;
+       position: absolute;	
+       max-width: 300px;	
+       padding: 5px;
+       background: #FFF;	
+       border: 1px solid #2c7fb8;
+       pointer-events: none;	
+     }
