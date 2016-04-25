@@ -258,16 +258,20 @@ function draw_chart_detail_worker (workerid) {
       .text("Total Hearing Level (dB)");
 
     function createInsetTotal(data, idx) {
+      xTicks = []
       totals = []
-	  dotInsetColors = []
-      data.forEach(function(d) {
-          totals.push(+d["TotalHearing"])	// push = add array element, convert it to integer. 
-		  dotInsetColors.push(color(d["JobCodeNumber"]))
+	    dotInsetColors = []
+      data.forEach(function(d, i) {
+        xTicks.push(i + "")
+        totals.push(+d["TotalHearing"])	// push = add array element, convert it to integer. 
+		    dotInsetColors.push(color(d["JobCodeNumber"]))
       })
 
       xInset.domain([0, data.length - 1])
       yInset.domain([d3.min(totals), d3.max(totals)])
       // yInset.domain([0,1000])
+      
+      xAxisInset.tickValues(xTicks)
 
       gxAxisInset.call(xAxisInset)
       gyAxisInset.call(yAxisInset)
@@ -387,12 +391,15 @@ function draw_chart_detail_worker (workerid) {
 
       // Label slider button
       if(slider !== undefined) slider.select(".draggertext").style("display", "none")
-        setTimeout(function() {
+      setTimeout(
+        function() {
           slider.select(".draggertext")
-            .text("Age = " + data.age + ", " + "Job = " + data.jobId)
+            .text('Age = '+ data.age +', Job = '+ data.jobId +'')
             .style("display", "")
+          
+          slider.select(".draggertext").call(wrap, 50);
         }, 300
-        )} /*end of laber for slider*/
+      )} /*end of laber for slider*/
 
 
     function parseData(data) {
@@ -443,6 +450,35 @@ function draw_chart_detail_worker (workerid) {
 
       return newData
     } /*end parse data*/
+    
+    function wrap(text, width) {
+      text.each(function() {
+        var text = d3.select(this),
+        words = text.text().split(/\s+/).reverse(),
+        word,
+        line = [],
+        lineNumber = 0,
+        lineHeight = 1.1, // ems
+        y = parseFloat(text.attr("y")),
+        dy = 1,
+        tspan = text.text(null).append("tspan").attr("x", 10).attr("y", y).attr("dy", dy + "em");
+        while (word = words.pop()) {
+          line.push(word);
+          tspan.text(line.join(" "));
+          if (tspan.node().getComputedTextLength() > width) {
+            line.pop();
+            tspan.text(line.join(" "));
+            line = [word];
+            
+            ++lineNumber
+            tspan = text.append("tspan").attr("x", 10).attr("y", y).attr("dy", lineNumber * lineHeight + dy + "em").text(word);
+          }
+        }
+        
+        numSpan = text.selectAll("tspan")[0].length;
+        text.selectAll("tspan").attr("y", y - ((numSpan-1) * lineHeight * 10))
+      });
+    }
 
     // Create initial graph for 1st element
     createGraph(data[0])
