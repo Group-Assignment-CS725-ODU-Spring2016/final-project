@@ -77,11 +77,37 @@
   }
   
   div.tooltip {	
-       font : 12px "Helvetica Neue",arial,freesans,clean,sans-serif;
-       position: absolute;	
-       max-width: 300px;	
-       padding: 5px;
-       background: #FFF;	
-       border: 1px solid #2c7fb8;
-       pointer-events: none;	
-     }
+     font : 12px "Helvetica Neue",arial,freesans,clean,sans-serif;
+     position: absolute;	
+     max-width: 300px;	
+     padding: 5px;
+     background: #FFF;	
+     border: 1px solid #2c7fb8;
+     pointer-events: none;	
+   }
+
+  .legend {
+    border : 1px solid #2c7fb8;
+    margin: 0 0 20px 0;
+  }
+  .legend ul {
+    padding: 10px 50px;
+    margin: 0px;
+    list-style-type: none;
+    text-align: center;
+  }
+  .legend ul li { 
+    display: inline; 
+    padding: 5px 10px;
+  }
+  .legend ul li .color { 
+    width : 20px;
+    height : 20px;
+    float: left;
+    margin: 0px 10px 0 0;
+  }
+  .legend ul li .label {
+    float: left;
+    margin: 0px 10px 0px 0px;
+    color: black !important;
+  }
