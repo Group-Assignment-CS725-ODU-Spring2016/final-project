@@ -77,37 +77,77 @@
 
        	<div class="row">
 
-       		<div class="col-lg-1" >
-       		</div>
-       		<div class="col-lg-1">
-       				<p>Sort data:</p>
+			
+       		
+			<div class="col-lg-1">
+			</div>
+			<div class="col-lg-2" >
+			<p>Sort data:</p>
        				<div class="btn-group-vertical btn-group-md">
 					<button id="by_number_worker" class="btn btn-success">By Workers</button>
-       				<button id="by_job_id" class="btn btn-success">By Job ID</button>
-       			</div>
-       			
+       				<button id="by_job_id" class="btn btn-success">By Job ID</button>		
        		</div>
-         	<div class="col-lg-6" id="overview_job_id">
-         		
-        	</div>
+			<br/><br/>
+			<div id="jobsummary">
+			<h3 class="text-danger">Job Summary</h3>
+				  <p>Workers belonging to <span id="JobId">all Jobs</span></p>                                                            
+				  <table class="table">
+				    <thead>
+				      <tr>
+				        <th>Stat</th>
+				        <th>Information</th>
+				      </tr>
+				    </thead>
+				    <tbody>
+				      <tr class="info">
+				        <td>Total Workers</td>
+				        <td><span id="totalworkers"></span></td>
+				      </tr>
+				     
+				      <tr class="info">
+				        <td>Minimum Age</td>
+				        <td><span id="minage"></span></td>
+				      </tr>
+					  <tr class="info">
+				        <td>Maximum Age</td>
+				        <td><span id="maxage"></span></td>
+				      </tr>
+				    </tbody>
+				   </table>
+				   </div>
+       		</div>
 
+         	<div class="col-lg-6" id="overview_job_id">
+			
+        	</div>
+			
          
 	  		<div class="col-lg-3">
 		  		<div class="row text-center">
 	        		
 	        		<h4 class="text-danger"><span id="Overviewpiechart_title"></span>
 	        		</h4>
-
+				
+				
+				
+				
 	        	</div>
 		  		<div class="row text-center">
+				
+				
 	        		<div id="piechart">
 	        		
 	        		</div>
 	        	</div>
+				
 	        </div>
+			
+			
 
     	</div>
+		
 	</div> <!-- end first overview job type -->
+	
 	
 	<!-- first detail for job type -->
 	<div class="container-fluid">

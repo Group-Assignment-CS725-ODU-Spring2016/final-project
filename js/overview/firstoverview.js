@@ -59,6 +59,15 @@ function load_first_overview(filename)
           .attr("y", 10)
           .attr("class", "label")
           .text("Number of Workers");
+		  
+		  svg.append("g")
+          .append("text")
+          .attr("transform", "translate(0," + (ovheight+40) + ")")
+          .attr("x", 500)
+          .attr("y", 0)
+          .attr("class", "label")
+          .text("Job Id");
+		  
 
          var zoom = d3.behavior.zoom()
             .x(ovx)
@@ -72,7 +81,13 @@ function load_first_overview(filename)
             .attr("width", ovwidth)
             .attr("height", ovheight)
             
-
+			
+					var tworkers = d3.selectAll("#totalworkers");
+					tworkers.html("734327");
+					var minAge = d3.selectAll("#minage");
+					minAge.html("16");
+					var maxAge = d3.selectAll("#maxage");
+					maxAge.html("87");
         //define big chart (focus)
         var focus = svg.append("g")
             .attr("transform", "translate(" + ovmargin.left + "," + ovmargin.top + ")");
@@ -113,7 +128,7 @@ function load_first_overview(filename)
         	ovy2.domain(ovy.domain()); 
 
           //console.log(x2.domain());
-
+			
           //Insert the y Axis
           focus.append("g")
               .attr("class", "y axis")
@@ -126,9 +141,17 @@ function load_first_overview(filename)
               .on("mouseover", function(d,i)
                   {
                     PieChart(d.Male,d.Total-d.Male,d.Total,"#piechart");
-
+					d3.selectAll("#jobsummary").style("visibility","visible");
+					var jobId = d3.selectAll("#JobId");
+					jobId.html(" Job Id: "+d.JobCodeNumber);
+					var tworkers = d3.selectAll("#totalworkers");
+					tworkers.html(d.Total);
+					var minAge = d3.selectAll("#minage");
+					minAge.html(d.MinimumAge);
+					var maxAge = d3.selectAll("#maxage");
+					maxAge.html(d.MaximumAge);
                     var tiphtml = "<strong>Job Code:</strong> <span style='color:red'>" + d.JobCodeNumber + "</span>";
-                    tiphtml = tiphtml + "<br><strong>Total Workers:</strong> <span style='color:red'>" + d.Total + "</span>";
+                  //  tiphtml = tiphtml + "<br><strong>Total Workers:</strong> <span style='color:red'>" + d.Total + "</span>";
                     tip.html(tiphtml);
                     tip.show();
 
@@ -141,6 +164,13 @@ function load_first_overview(filename)
                 .on("mouseout", function(d,i)
                   {
                     //clear bar chart
+					d3.selectAll("#JobId").html(" all jobs");
+					var tworkers = d3.selectAll("#totalworkers");
+					tworkers.html("734327");
+					var minAge = d3.selectAll("#minage");
+					minAge.html("16");
+					var maxAge = d3.selectAll("#maxage");
+					maxAge.html("87");
 
                     d3.selectAll("#piechart").html("");
 
@@ -172,6 +202,16 @@ function load_first_overview(filename)
                   })
                 .on('click',  function(d,i)
                 { 
+				
+					d3.selectAll("#jobsummary").style("visibility","visible");
+					var jobId = d3.selectAll("#JobId");
+					jobId.html(d.JobCodeNumber);
+					var tworkers = d3.selectAll("#totalworkers");
+					tworkers.html(d.Total);
+					var minAge = d3.selectAll("#minage");
+					minAge.html(d.MinimumAge);
+					var maxAge = d3.selectAll("#maxage");
+					maxAge.html(d.MaximumAge);
 
                     jobid = d.JobCodeNumber;
 
