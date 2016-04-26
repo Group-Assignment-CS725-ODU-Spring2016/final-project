@@ -22,7 +22,7 @@ function PieChart(male,female,total,divposition){
         {   
             var viewinfo = d3.selectAll("#Overviewpiechart_title");
             viewinfo.html("Overall by Gender");
-            colorpc = ["#d73027","#4575b4"];
+            colorpc = ["#4575b4","#d73027"];
         }
         else
         {
@@ -35,7 +35,7 @@ function PieChart(male,female,total,divposition){
             {   
                 //Mouse hover data
               
-               colorpc = ["#fee090","#e0f3f8"];
+               colorpc = ["#4575b4","#d73027"];
             }
         }
 
