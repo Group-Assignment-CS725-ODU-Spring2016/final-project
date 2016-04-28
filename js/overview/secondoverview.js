@@ -161,6 +161,7 @@ svg.call(tip);
             .on("mouseout", function(d,i)
               {
               
+                
                 tip.hide();
                // console.log(i);
 
@@ -207,6 +208,7 @@ svg.call(tip);
                 $("#slider").fadeIn(200);
                 $("#overview").fadeIn(200);
                 $("#divhidedetail").fadeIn(200);
+                $('#divlegend').fadeIn(200);
                 document.getElementById('divseconddetailtitle').style.display = '';
 
                 d3.select(this).style("fill", "magenta");

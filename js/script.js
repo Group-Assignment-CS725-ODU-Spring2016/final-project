@@ -43,6 +43,7 @@ $(document).ready(function(){
 		$('#slider').hide();
 		$('#divhidedetail').hide();
 		$('#divseconddetailtitle').hide();
+		$('#divlegend').hide();
 		
 		
 		$('html, body').animate({scrollTop: $('#divmasterhead').offset().top}, 100);       
