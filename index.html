@@ -39,26 +39,37 @@
             </nav>
       </div>
 
-        
   
-
-    
 
     <div class="row">
      <div class="col-lg-12" >
        <h1>Project Overview</h1> 
-        <p >Hearing Conservation Program (HCP) which is run by
-        US navy aims to track hearing level of workers over a
-        period of time.</p>
 
-        <p>HCP collected audiogram data for about 150k workers
-        for a period of 20 years.</p>
+            <p>        
+            Hearing Conservation Program (HCP) conducted by US Navy aims to protect and prevent the hearing loss in service members. This program is based on the idea that being exposed to an extremely loud noise could cause someone instantly lose the hearing ability. However, people who are exposed to the noise for a very long term will have a five-year lag before the hearing loss could be noticed.
+            People who are tested in this program are workers who exposed to noise levels in the range 85-100 decibels (dBA). Their hearings are tested on regular basis. The test details are recorded in the audiogram so that there will be beep sound at different frequencies as and when the volume is increased. Figure 1 shows an audiogram for normal ears.
+            </p>
+            <p>
+            A person who is taking the test raises their hands as a response after hearing the beep and the frequency along with the volume are recorded. Hearing loss is indicated by a higher dBA number, which is recorded by an "O" (right ear) or "X" (left ear). Figure 2 shows an example of audiogram for noise-induced hearing loss. Due to limitations in the data collection methods and the characteristics of the Navy worker population, it is difficult to learn more about the data by using traditional data analysis. Workers often do not stay in the same job for many years. For example, if a worker changes his job from the flight deck of an aircraft carrier to the laboratory and then has his hearing measured, it might appear that lack of noise exposure was causing his hearing loss. Therefore, a visualization is needed to help better understanding the audiogram data.
+            </p>
+            <p>
+            In this paper, the authors analyzed a dataset of audiograms having more than 700,000 records covering 20 years of the program till the year 2012 and produced several interactive visualizations using D3.js for the user to see the hearing curves of workers over the years. Hearing curves are visualized by JobID and the WorkerID. For hearing curves by JobID, overview-detail charts are provided to identify the average hearing levels for different age ranges. In addition to these, the heat map is provided to see the frequency of the workers belonging to that JobID. Another overview-detail chart is designed for hearing curves by WorkerID. This visualization allows the user to explore hearing curves for individual workers at different age along with their total hearing curves. This will be discussed in more detail in further sections.
+            </p>
 
-        <p>We are trying to design visualizations that allow users
-        to analyze hearing curves among the workers.</p>
         </div>
         <div class="col-xs-12"><hr></div>
     </div>
+
+
+ <div class="row">
+    <h1>Project Demo</h1> 
+     <div class="col-lg-12 text-center" >
+   
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/Cqa5iMFyF_0" frameborder="0" allowfullscreen></iframe>
+    </div>
+     <div class="col-xs-12"><hr></div>
+</div>
+
     <div class="row">
      <div class="col-lg-6" >
         
@@ -92,7 +103,7 @@
             <a href="vis_by_worker.html"><img class="img-responsive" src="img/secondoverview.png" alt="hung"></a>
             <div class="col-xs-12"><hr></div>
             <h4>2.2. Detail</h4>
-            <p>This is the detail information of each worker that has been selected from previous overview chart
+            <p>This is the detail information of each worker that has been selected from previous overview chart</p>
             <img class="img-responsive" src="img/seconddetail.png" alt="hung"> 
             <div class="col-xs-12"><hr></div>
 
@@ -101,10 +112,15 @@
 
     </div>
 </div>
+
+</div><!-- div container -->
+
+<div class="container">
+    <div>
+    <footer id="footer" class="footer"></footer>
+    </div> 
+</div><!-- div container -->
   
-<div>
-<footer id="footer" class="footer"></footer>
-</div> <!-- div container -->
 
  
  <script src="js/jquery-2.2.3.min.js"></script>
