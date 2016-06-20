@@ -85,33 +85,72 @@ hmsvg.call(tip);
       .attr("transform", "rotate(-90)")
       .text("Age");
 
-var heatMap = hmsvg.selectAll(".heatmap")
-    .data(data, function(d) { return d.age + ':' + d.th; })
-    .enter().append("svg:rect")
-    .attr("x", function(d) { return hmx(d.th) ; })
-    .attr("y", function(d) { return hmy(d.age); })
-    .attr("width", function(d) { return w; })
-    .attr("height", function(d) { return h; })
-    .style("fill", function(d) { return colorScale(d.numberofworkers); });
+// var heatMap = hmsvg.selectAll(".heatmap")
+//     .data(data, function(d) { return d.age + ':' + d.th; })
+//     .enter().append("svg:rect")
+//     .attr("x", function(d) { return hmx(d.th) ; })
+//     .attr("y", function(d) { return hmy(d.age); })
+//     .attr("width", function(d) { return w; })
+//     .attr("height", function(d) { return h; })
+//     //.style("fill", function(d) { return colorScale(d.numberofworkers); });
 
-    heatMap
-    .on("mouseover", function(d,i)
-                  {
-                    //console.log (d);
-                     var tiphtml = "<strong>Number of Workers:</strong> <span style='color:red'>" + d.numberofworkers + "</span>";
-                     tiphtml =tiphtml + "<br><strong>Total Hearing:</strong> <span style='color:red'>" + d.th + "</span>";
-                      tiphtml =tiphtml + "<br><strong>Age:</strong> <span style='color:red'>" + d.age + "</span>";
+var fo = hmsvg.append('foreignObject')
+    .attr("width", hmwidth)
+    .attr("height", hmheight);
+
+var hmdiv = fo.
+    append("xhtml:div")
+    .attr('id','newheatmapjs')
+//    .html("deo gi the nhe");
+
+//document.getElementById('newheatmapjs').innerHTML = "hehe";
+
+ var aaa = h337.create({
+          container: document.getElementById('newheatmapjs'),
+          maxOpacity: .8,radius: 6,blur: .6});
+
+        // generate 1000 datapoints
+        var generate = function() {
+
+          var min  = 0;
+          var max = 20;
+          // // var t = [];
+          var parsedata=[];
+              data.forEach(function(d) {
+
+                    for (i=1;i<=d.numberofworkers;i++)
+                    {
+                      var xx = (d.th * 1 )+200;
+                      var yy = (600 - (d.age * 7));
+                      parsedata.push({x: xx,y:yy,value: 1, radius: 8});  
+                    }
+              });
+        aaa.setData({min: min,max: max,data: parsedata});
+
+        };
+
+        // initial generate
+        generate();
+ 
+
+    // heatMap
+    // .on("mouseover", function(d,i)
+    //               {
+    //                 //console.log (d);
+    //                  var tiphtml = "<strong>Number of Workers:</strong> <span style='color:red'>" + d.numberofworkers + "</span>";
+    //                  tiphtml =tiphtml + "<br><strong>Total Hearing:</strong> <span style='color:red'>" + d.th + "</span>";
+    //                   tiphtml =tiphtml + "<br><strong>Age:</strong> <span style='color:red'>" + d.age + "</span>";
 
                  
-                    tip.html(tiphtml);
+    //                 tip.html(tiphtml);
           
-                       tip.show();
-                })
-    .on("mouseout",function(d,i)
-            {
-                tip.hide();
-            }
-        )
+    //                    tip.show();
+    //             })
+    // .on("mouseout",function(d,i)
+    //         {
+    //             tip.hide();
+    //         }
+    //     )
 
 
 })
