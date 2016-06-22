@@ -32,17 +32,19 @@ var svg = d3.select("#overview_worker_id").append("svg")
 
 
 
-var ovxAxis = d3.svg.axis().scale(ovx).orient("bottom");
+
 
 var  ovxAxis2 = d3.svg.axis().scale(ovx2)
     .orient("bottom");
   
 
+var ovxAxis = d3.svg.axis().scale(ovx).orient("bottom");
 var ovyAxis = d3.svg.axis().scale(ovy).orient("left");
 
+
+//Label for y axis
 svg.append("g")
   //.attr("class", "y axis")
-  .call(ovyAxis)
   .append("text")
   .attr("transform", "rotate(-90)")
   .attr("x", -ovheight+40)
@@ -50,7 +52,13 @@ svg.append("g")
   .attr("class", "label")
   .text("Total Hearing (dB)");
 
-
+//Label for x axis
+svg.append("g")
+  .append("text")
+  .attr("x", ovwidth/2 + 40)
+  .attr("y", ovheight+200)
+  .attr("class", "label")
+  .text("Number of Workers");
 
 //define big chart (focus)
 var focus = svg.append("g")
@@ -141,7 +149,11 @@ svg.call(tip);
           .attr("class", "y axis")
           .call(ovyAxis);
 
-
+      //Insert the x Axis
+      focus.append("g")
+          .attr("class", "x axis")
+          .attr("transform", "translate(0," + ovheight + ")")
+          .call(ovxAxis);
 
     	
       //This in the big chart, which is the focus
